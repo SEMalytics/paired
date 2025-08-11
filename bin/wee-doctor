@@ -1,0 +1,3 @@
+#!/bin/bash
+# WEE Doctor executable wrapper
+exec "$HOME/.wee/scripts/wee-doctor.sh" "$@"

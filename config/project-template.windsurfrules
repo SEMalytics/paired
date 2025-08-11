@@ -1,0 +1,81 @@
+---
+description: Windsurf Evolutionary Ecosystem - Project Configuration
+globs: **/*
+alwaysApply: true
+---
+
+# CRITICAL WINDSURF IDE AGENT INTEGRATION
+# These directives are REQUIRED for Windsurf IDE to recognize and load WEE agents
+agent_config: .wee/config/agents/
+memory_path: .wee/memory/
+context_path: .wee/contexts/
+
+# Include WEE configuration files
+include .wee/rules/*.md
+include .wee/config/*.yml
+
+# MASTER RULES HIERARCHY
+
+## Layer 1: Core AI Interaction Principles (ALWAYS APPLY FIRST)
+For comprehensive AI interaction principles, templates, and detailed guidance, see: `.wee/rules/ai_interaction_rules.md`
+
+1. **Mandatory Consultation Order**:
+   - `.wee/contexts/context_discovery.md` - Current project focus
+   - `.wee/config/project_config.yml` - Project-wide configuration
+   - `.wee/memory/ai_memory.md` - AI knowledge accumulation
+   - `.wee/handoff/last_session.md` - Session continuity
+
+2. **Explicit Reasoning Requirements**:
+   - Document all architectural decisions in `.wee/memory/reasoning_log.md`
+   - Apply AI Reasoning Block Template for non-trivial changes
+   - Log learning outcomes to AI memory
+
+3. **Context Preservation**:
+   - Maintain development continuity
+   - Reference handoff documentation
+   - Update context files after significant changes
+
+## Layer 2: Language-Specific Development Rules
+When working with Python files (*.py, **/Dockerfile, **/*.yaml):
+- Apply Python development standards from `.wee/rules/python_dev_rules.md`
+- Execute pre-commit verification workflow
+- Follow type safety and testing requirements
+
+## Layer 3: Quality Gates (Universal)
+Before ANY commit:
+1. Consult AI memory for similar implementations
+2. Run appropriate language-specific quality checks
+3. Update reasoning log for significant changes
+4. Verify no regression in performance metrics
+
+## Integration Points
+- Python rules are now a subset of the larger ecosystem
+- AI principles govern HOW we apply language-specific rules
+- All development follows the evolutionary learning protocol
+
+## AI Reasoning Block Template
+- **Task**: Brief description
+- **Considered Approaches**: Multiple options with pros/cons
+- **Chosen Solution**: Selected approach
+- **Rationale**: Decision reasoning
+- **Potential Risks**: Risk assessment
+
+## Critical Overrides (Immediate Halt Conditions)
+- Security vulnerabilities detected
+- Changes significantly deviating from project architecture
+- Complex logical conflicts encountered
+
+## Knowledge Navigation System
+
+For comprehensive access to all knowledge repositories in the Windsurf ecosystem, follow the Knowledge Navigator system:
+
+- **Knowledge Navigator**: `.wee/docs/KNOWLEDGE_NAVIGATOR.md`
+  - Complete decision tree implementation
+  - Systematic knowledge access protocols
+  - Operational examples for different scenarios
+
+The Knowledge Navigator provides detailed guidance on accessing and applying all rules, documentation, and context files within the proper sequence and hierarchy.
+
+# WEE AGENT PERSONALITY DEFINITIONS
+# Agent personalities are defined in a separate file for maintainability
+include .wee/config/agent_definitions.md

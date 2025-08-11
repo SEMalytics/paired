@@ -1,0 +1,70 @@
+{
+  "name": "knowledgeforge-3.2",
+  "version": "2025.08.11",
+  "description": "WEE (Workflow Evolution Engine) - Tiny middleware for AI-powered development",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js",
+    "test": "jest --detectOpenHandles",
+    "test:watch": "jest --watch --detectOpenHandles",
+    "test:coverage": "jest --coverage --detectOpenHandles",
+    "lint": "echo \"Linting will be implemented in next phase\" && exit 0",
+    "lint:fix": "echo \"Lint fix will be implemented in next phase\" && exit 0",
+    "setup": "./setup_kf32.sh",
+    "cli": "node src/cli/kf32_cli.js",
+    "orchestrate": "node src/orchestrator/claude_orchestrator.js",
+    "logic-diagram": "node src/cli/logic-diagram.js",
+    "validate": "./scripts/validate-agents.sh",
+    "health": "node core/health_checker.js",
+    "quickstart": "./bin/wee-quickstart",
+    "repair": "./bin/wee-repair",
+    "install-deps": "./scripts/install-dependencies.sh",
+    "startup": "./bin/wee-startup",
+    "wee-start": "./bin/wee-startup --silent",
+    "test:unit": "jest tests/unit --detectOpenHandles",
+    "test:integration": "jest tests/integration --detectOpenHandles",
+    "test:e2e": "jest tests/e2e --detectOpenHandles",
+    "test:ci": "jest --coverage --ci --watchAll=false --detectOpenHandles"
+  },
+  "keywords": [
+    "windsurf",
+    "ai-agents",
+    "evolutionary-ecosystem",
+    "logic-diagrams",
+    "xmind-integration",
+    "auto-start",
+    "development-analysis",
+    "code-quality",
+    "architecture",
+    "project-management",
+    "dummy-proof"
+  ],
+  "author": "WEE Development Team",
+  "license": "MIT",
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
+  },
+  "dependencies": {
+    "@babel/parser": "^7.28.0",
+    "@babel/traverse": "^7.28.0",
+    "@babel/types": "^7.28.2",
+    "chalk": "^4.1.2",
+    "commander": "^9.4.1",
+    "express": "^5.1.0",
+    "fs-extra": "^10.1.0",
+    "glob": "^11.0.3",
+    "inquirer": "^8.2.5",
+    "js-yaml": "^4.1.0",
+    "uuid": "^11.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SEMalytics/wee.git"
+  },
+  "bugs": {
+    "url": "https://github.com/SEMalytics/wee/issues"
+  },
+  "homepage": "https://github.com/SEMalytics/wee"
+}

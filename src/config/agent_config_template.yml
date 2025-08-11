@@ -1,0 +1,257 @@
+# WEE (Windsurf Evolutionary Ecosystem) Agent Configuration Template
+# 
+# This template defines the standard configuration structure for all agents
+# in the unified architecture. Each agent inherits from this template and
+# adds agent-specific specializations.
+#
+# Philosophy: "Configuration-Driven Specialization with Shared Intelligence"
+
+# Agent Identity and Core Information
+agent:
+  id: "template_agent"                    # Unique identifier (snake_case)
+  name: "Template Agent"                  # Human-readable name
+  role: "Template Role"                   # Primary role description
+  version: "1.0.0"                       # Agent version
+  persona: "template_persona"             # BMad persona integration
+  description: "Template agent for unified architecture"
+  
+  # Agent status and lifecycle
+  status: "template"                      # template|active|deprecated|maintenance
+  lifecycle_stage: "development"         # development|testing|production|sunset
+  
+  # Agent classification
+  category: "core"                        # core|specialized|utility|experimental
+  priority: 5                            # 1-10 priority for resource allocation
+  
+# Specializations and Expertise
+specializations:
+  # Primary areas of expertise
+  expertise_areas:
+    - "template_expertise"
+    - "configuration_management"
+  
+  # Specific capabilities this agent provides
+  capabilities:
+    - name: "template_capability"
+      description: "Template capability description"
+      complexity_level: 5               # 1-10 complexity handling
+      confidence: 0.8                   # 0-1 confidence in capability
+    
+  # Tools and integrations this agent can use
+  tools:
+    - name: "template_tool"
+      type: "internal"                  # internal|external|api|cli
+      priority: "high"                  # high|medium|low
+      fallback_available: true
+  
+  # Knowledge domains this agent specializes in
+  knowledge_domains:
+    - domain: "template_domain"
+      expertise_level: "expert"         # novice|intermediate|advanced|expert
+      last_updated: "2024-01-01"
+  
+# Integration Configuration
+integration:
+  # Claude Code integration settings
+  claude_code_priority:
+    - "simple_file_operations"
+    - "basic_text_processing"
+    - "template_operations"
+  
+  # Windsurf operations (complex reasoning required)
+  windsurf_operations:
+    - "complex_analysis"
+    - "strategic_planning"
+    - "multi_step_reasoning"
+  
+  # Hybrid operations (combination approach)
+  hybrid_operations:
+    - "research_with_synthesis"
+    - "analysis_with_implementation"
+  
+  # Notification system integration
+  notification_types:
+    - "task_completion"
+    - "error_alerts"
+    - "handoff_requests"
+    - "collaboration_invites"
+  
+  # Memory system configuration
+  memory_config:
+    scope_preferences:
+      - "agent"                         # agent|team|global
+      - "team"
+    retention_policy:
+      short_term: "24h"                 # Immediate working memory
+      medium_term: "7d"                 # Recent context and patterns
+      long_term: "30d"                  # Important learnings and insights
+    memory_types:
+      - "task_results"
+      - "error_patterns"
+      - "success_patterns"
+      - "collaboration_history"
+  
+# Orchestration and Collaboration
+orchestration:
+  # Handoff preferences - when to hand off to other agents
+  handoff_triggers:
+    - condition: "expertise_mismatch"
+      threshold: 0.3                    # Confidence threshold
+      action: "immediate_handoff"
+    - condition: "complexity_exceeded"
+      threshold: 8                      # Complexity level 1-10
+      action: "collaborative_approach"
+    - condition: "time_exceeded"
+      threshold: "30m"                  # Time threshold
+      action: "escalate_or_handoff"
+  
+  # Collaboration preferences
+  collaboration:
+    preferred_partners:
+      - agent: "pm_agent"
+        relationship: "coordination"
+        frequency: "high"
+    
+    communication_style: "structured"   # structured|casual|formal
+    handoff_style: "detailed"          # minimal|standard|detailed
+    
+  # Routing rules for incoming requests
+  routing_rules:
+    - pattern: "template_pattern"
+      confidence: 0.9
+      action: "accept"
+    - pattern: "complex_analysis"
+      confidence: 0.3
+      action: "collaborate"
+    - pattern: "outside_expertise"
+      confidence: 0.1
+      action: "handoff"
+
+# Performance and Learning
+performance:
+  # Expected performance metrics
+  targets:
+    response_time: "5s"                 # Target response time
+    success_rate: 0.95                  # Target success rate
+    token_efficiency: 0.8               # Token usage efficiency
+  
+  # Learning configuration
+  learning:
+    enabled: true
+    pattern_recognition: true
+    error_learning: true
+    success_optimization: true
+    
+    # Learning thresholds
+    thresholds:
+      pattern_confidence: 0.7
+      error_frequency: 3                # Learn after 3 similar errors
+      success_repetition: 5             # Optimize after 5 similar successes
+  
+  # Monitoring and alerting
+  monitoring:
+    health_checks: true
+    performance_tracking: true
+    error_alerting: true
+    
+    alert_thresholds:
+      error_rate: 0.1                   # Alert if error rate > 10%
+      response_time: "30s"              # Alert if response time > 30s
+      memory_usage: 0.8                 # Alert if memory usage > 80%
+
+# Agent-Specific Extensions
+# This section is where individual agents add their unique configurations
+extensions:
+  # Custom configuration sections for specific agents
+  custom_config: {}
+  
+  # Agent-specific workflows
+  workflows: []
+  
+  # Agent-specific templates
+  templates: []
+  
+  # Agent-specific aliases and commands
+  commands: []
+
+# Development and Testing
+development:
+  # Testing configuration
+  testing:
+    unit_tests: true
+    integration_tests: true
+    performance_tests: true
+    
+    test_scenarios:
+      - name: "basic_functionality"
+        description: "Test core agent capabilities"
+        priority: "high"
+      - name: "error_handling"
+        description: "Test error recovery and handling"
+        priority: "high"
+      - name: "collaboration"
+        description: "Test handoff and collaboration"
+        priority: "medium"
+  
+  # Debugging and diagnostics
+  debugging:
+    verbose_logging: false
+    trace_execution: false
+    memory_debugging: false
+    performance_profiling: false
+  
+  # Migration and deployment
+  deployment:
+    migration_strategy: "gradual"       # gradual|immediate|canary
+    rollback_plan: true
+    compatibility_mode: false
+    
+# Documentation and Help
+documentation:
+  # Help and usage information
+  help:
+    short_description: "Template agent for unified architecture"
+    usage_examples:
+      - command: "template-command"
+        description: "Example template command"
+        example: "kf32 template-command --help"
+    
+    common_tasks:
+      - task: "template_task"
+        description: "How to perform template task"
+        steps:
+          - "Step 1: Initialize"
+          - "Step 2: Execute"
+          - "Step 3: Validate"
+  
+  # Links and references
+  references:
+    documentation_url: ""
+    source_code_url: ""
+    issue_tracker_url: ""
+    
+# Metadata and Versioning
+metadata:
+  created_date: "2024-01-01"
+  last_modified: "2024-01-01"
+  created_by: "WEE System"
+  
+  # Version history
+  version_history:
+    - version: "1.0.0"
+      date: "2024-01-01"
+      changes: "Initial template creation"
+      
+  # Dependencies
+  dependencies:
+    base_agent: ">=1.0.0"
+    shared_memory: ">=1.0.0"
+    orchestrator: ">=1.0.0"
+    
+  # Compatibility
+  compatibility:
+    min_node_version: "16.0.0"
+    supported_platforms:
+      - "darwin"
+      - "linux"
+      - "win32"

@@ -1,0 +1,296 @@
+# WEE (Windsurf Evolutionary Ecosystem) QA Agent Configuration
+
+metadata:
+  name: "Sherlock (QA)"
+  version: "1.0"
+  agent_type: "qa_agent"
+  created: "2025-01-28"
+  description: "Quality Assurance Agent for comprehensive code review, testing, and quality gate management"
+
+# Agent Identity
+agent:
+  id: "sherlock_qa"
+  name: "Sherlock (QA)"
+  role: "Senior Developer & Quality Architect"
+  version: "1.0.0"
+  persona: "Sherlock"
+  description: "Sherlock - Master Quality Detective"
+  status: "active"
+  lifecycle_stage: "production"
+
+identity:
+  name: "Sherlock (QA)"
+  persona: "Sherlock"
+  role: "Senior Developer & Quality Architect"
+  scope: "Windsurf Evolutionary Ecosystem"
+  bmad_integration: "qa.txt persona"
+
+# Core Responsibilities
+responsibilities:
+  senior_developer_review:
+    enabled: true
+    description: "Perform comprehensive code reviews as a senior developer mentoring juniors"
+    focus_areas:
+      - architecture
+      - patterns
+      - best_practices
+      - active_refactoring
+      - educational_feedback
+  
+  quality_assurance:
+    enabled: true
+    description: "Create and execute comprehensive test plans"
+    activities:
+      - test_plan_creation
+      - holistic_testing_strategies
+      - user_experience_validation
+      - accessibility_testing
+      - acceptance_criteria_validation
+  
+  test_architecture:
+    enabled: true
+    description: "Design test automation frameworks"
+    components:
+      - automation_frameworks
+      - continuous_testing
+      - reusable_test_components
+      - testing_best_practices
+  
+  performance_security:
+    enabled: true
+    description: "Proactive performance and security analysis"
+    areas:
+      - performance_bottlenecks
+      - security_reviews
+      - threat_modeling
+      - performance_benchmarking
+      - resource_utilization
+  
+  quality_gates:
+    enabled: true
+    description: "Enforce coding standards and manage quality gates"
+    functions:
+      - coding_standards_enforcement
+      - test_coverage_requirements
+      - quality_metrics_tracking
+      - regression_testing_coordination
+
+# Quality Thresholds
+quality_thresholds:
+  test_coverage: 80
+  code_complexity: 10
+  duplication_threshold: 3
+  security_score_minimum: 8
+  performance_score_minimum: 7
+  accessibility_score_minimum: 8
+
+# Testing Strategy
+testing_strategy:
+  unit_tests:
+    enabled: true
+    coverage_target: 90
+    frameworks: ["jest", "mocha", "pytest"]
+  
+  integration_tests:
+    enabled: true
+    coverage_target: 75
+    focus_areas: ["api_endpoints", "database_interactions", "service_integrations"]
+  
+  e2e_tests:
+    enabled: true
+    coverage_target: 60
+    tools: ["cypress", "playwright", "selenium"]
+  
+  performance_tests:
+    enabled: true
+    metrics: ["response_time", "throughput", "memory_usage", "cpu_usage"]
+    tools: ["k6", "jmeter", "lighthouse"]
+  
+  security_tests:
+    enabled: true
+    areas: ["authentication", "authorization", "input_validation", "data_protection"]
+    tools: ["owasp_zap", "snyk", "bandit"]
+  
+  accessibility_tests:
+    enabled: true
+    standards: ["WCAG_2.1_AA"]
+    tools: ["axe", "lighthouse", "pa11y"]
+
+# Review Criteria
+review_criteria:
+  architecture_review:
+    enabled: true
+    focus_areas:
+      - design_patterns
+      - separation_of_concerns
+      - dependency_management
+      - scalability_considerations
+  
+  security_review:
+    enabled: true
+    checklist:
+      - input_validation
+      - authentication_mechanisms
+      - authorization_controls
+      - data_encryption
+      - secure_communication
+  
+  performance_review:
+    enabled: true
+    metrics:
+      - algorithmic_complexity
+      - database_query_optimization
+      - caching_strategies
+      - resource_utilization
+  
+  accessibility_review:
+    enabled: true
+    standards:
+      - semantic_html
+      - keyboard_navigation
+      - screen_reader_compatibility
+      - color_contrast
+      - responsive_design
+
+# Integration Points
+integration:
+  knowledge_navigator:
+    enabled: true
+    context_awareness: true
+    recommendation_engine: true
+  
+  documentation_system:
+    enabled: true
+    auto_update_tracking: true
+    quality_reports: true
+  
+  notification_system:
+    enabled: true
+    quality_alerts: true
+    test_failure_notifications: true
+    coverage_warnings: true
+  
+  git_integration:
+    enabled: true
+    pre_commit_hooks: true
+    quality_gate_enforcement: true
+    automated_review_requests: true
+  
+  ci_cd_integration:
+    enabled: true
+    automated_testing: true
+    quality_gates: true
+    deployment_blocking: true
+
+# Workflow Configuration
+workflows:
+  code_review_workflow:
+    trigger: "pull_request"
+    steps:
+      - automated_quality_check
+      - security_scan
+      - performance_analysis
+      - accessibility_check
+      - manual_review_if_needed
+  
+  test_execution_workflow:
+    trigger: "code_change"
+    steps:
+      - unit_tests
+      - integration_tests
+      - coverage_analysis
+      - performance_tests
+      - security_tests
+  
+  quality_audit_workflow:
+    trigger: "scheduled"
+    frequency: "weekly"
+    steps:
+      - collect_quality_metrics
+      - analyze_trends
+      - generate_recommendations
+      - update_quality_dashboard
+
+# Notification Configuration
+notifications:
+  quality_alerts:
+    enabled: true
+    channels: ["slack", "email", "windsurf"]
+    thresholds:
+      critical: "quality_score < 5"
+      warning: "quality_score < 7"
+      info: "quality_improvement_opportunity"
+  
+  test_failures:
+    enabled: true
+    immediate_notification: true
+    include_failure_analysis: true
+  
+  coverage_warnings:
+    enabled: true
+    threshold_drop: 5  # Alert if coverage drops by 5%
+    trend_analysis: true
+
+# Reporting Configuration
+reporting:
+  quality_dashboard:
+    enabled: true
+    update_frequency: "daily"
+    metrics:
+      - test_coverage_trends
+      - quality_score_trends
+      - performance_metrics
+      - security_score_trends
+  
+  weekly_quality_report:
+    enabled: true
+    recipients: ["team_leads", "product_owners"]
+    sections:
+      - quality_summary
+      - test_coverage_analysis
+      - performance_trends
+      - security_assessment
+      - recommendations
+  
+  monthly_quality_audit:
+    enabled: true
+    comprehensive_analysis: true
+    improvement_roadmap: true
+
+# Learning and Improvement
+continuous_improvement:
+  pattern_recognition:
+    enabled: true
+    learn_from_reviews: true
+    update_best_practices: true
+  
+  feedback_integration:
+    enabled: true
+    developer_feedback: true
+    process_optimization: true
+  
+  knowledge_sharing:
+    enabled: true
+    best_practices_documentation: true
+    training_recommendations: true
+
+# Agent Coordination
+coordination:
+  pm_agent:
+    handoff_triggers: ["quality_gate_failure", "major_refactoring_needed"]
+    shared_context: ["project_timeline", "resource_allocation"]
+  
+  dev_agent:
+    collaboration_points: ["code_review", "refactoring_sessions", "test_implementation"]
+    shared_artifacts: ["code_quality_reports", "refactoring_plans"]
+  
+  architecture_agent:
+    coordination_areas: ["design_reviews", "architectural_compliance", "technical_debt"]
+    shared_decisions: ["architectural_patterns", "quality_standards"]
+
+# Version History
+version_history:
+  - version: "1.0"
+    date: "2025-01-28"
+    changes: "Initial QA agent configuration with comprehensive quality management"
+    author: "System"

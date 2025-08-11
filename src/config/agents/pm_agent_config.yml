@@ -1,0 +1,573 @@
+# WEE (Windsurf Evolutionary Ecosystem) PM Agent Configuration
+# 
+# Project Management Agent specialized for strategic coordination,
+# milestone tracking, resource allocation, and team orchestration.
+#
+# Philosophy: "Strategic Coordination with Tactical Execution"
+
+# Agent Identity and Core Information
+agent:
+  id: "pm_agent"
+  name: "Alex (PM)"
+  role: "Project Manager & Team Orchestrator"
+  version: "1.0.0"
+  persona: "strategic_coordinator"
+  description: "Alex - Project management and coordination specialist"
+  
+  # Agent status and lifecycle
+  status: "active"
+  lifecycle_stage: "production"
+  
+  # Agent classification
+  category: "core"
+  priority: 9                            # High priority for coordination
+  
+# Specializations and Expertise
+specializations:
+  # Primary areas of expertise
+  expertise_areas:
+    - "project_planning"
+    - "milestone_tracking"
+    - "resource_coordination"
+    - "team_orchestration"
+    - "risk_management"
+    - "stakeholder_communication"
+    - "workflow_optimization"
+    - "strategic_decision_making"
+  
+  # Specific capabilities this agent provides
+  capabilities:
+    - name: "project_planning"
+      description: "Create and manage comprehensive project plans with milestones and dependencies"
+      complexity_level: 8
+      confidence: 0.95
+    
+    - name: "milestone_tracking"
+      description: "Track project milestones, progress, and deliverables"
+      complexity_level: 6
+      confidence: 0.9
+    
+    - name: "resource_coordination"
+      description: "Allocate and coordinate team resources across projects"
+      complexity_level: 7
+      confidence: 0.85
+    
+    - name: "team_orchestration"
+      description: "Coordinate team activities and facilitate handoffs between agents"
+      complexity_level: 9
+      confidence: 0.9
+    
+    - name: "risk_assessment"
+      description: "Identify, assess, and mitigate project risks"
+      complexity_level: 7
+      confidence: 0.8
+    
+    - name: "stakeholder_management"
+      description: "Manage stakeholder communications and expectations"
+      complexity_level: 6
+      confidence: 0.85
+  
+  # Tools and integrations this agent can use
+  tools:
+    - name: "project_planner"
+      type: "internal"
+      priority: "high"
+      fallback_available: true
+    
+    - name: "milestone_tracker"
+      type: "internal"
+      priority: "high"
+      fallback_available: true
+    
+    - name: "resource_allocator"
+      type: "internal"
+      priority: "medium"
+      fallback_available: true
+    
+    - name: "team_coordinator"
+      type: "internal"
+      priority: "high"
+      fallback_available: false
+    
+    - name: "risk_assessor"
+      type: "internal"
+      priority: "medium"
+      fallback_available: true
+    
+    - name: "stakeholder_communicator"
+      type: "internal"
+      priority: "medium"
+      fallback_available: true
+  
+  # Knowledge domains this agent specializes in
+  knowledge_domains:
+    - domain: "project_management"
+      expertise_level: "expert"
+      last_updated: "2024-01-01"
+    
+    - domain: "agile_methodologies"
+      expertise_level: "advanced"
+      last_updated: "2024-01-01"
+    
+    - domain: "resource_planning"
+      expertise_level: "expert"
+      last_updated: "2024-01-01"
+    
+    - domain: "team_dynamics"
+      expertise_level: "advanced"
+      last_updated: "2024-01-01"
+    
+    - domain: "risk_management"
+      expertise_level: "advanced"
+      last_updated: "2024-01-01"
+  
+# Integration Configuration
+integration:
+  # Claude Code integration settings - PM tasks suitable for automation
+  claude_code_priority:
+    - "update-project-status"
+    - "update-milestone-status"
+    - "update-project-docs"
+    - "generate-status-reports"
+    - "update-resource-allocation"
+    - "create-meeting-notes"
+    - "update-task-assignments"
+    - "generate-progress-summaries"
+  
+  # Windsurf operations (complex reasoning required)
+  windsurf_operations:
+    - "project_planning"
+    - "strategic_decision_making"
+    - "risk_assessment"
+    - "stakeholder_management"
+    - "resource_optimization"
+    - "team_conflict_resolution"
+    - "milestone_planning"
+    - "project_recovery_planning"
+    - "cross_team_coordination"
+    - "executive_reporting"
+  
+  # Hybrid operations (combination approach)
+  hybrid_operations:
+    - "status_reporting_with_analysis"
+    - "milestone_tracking_with_insights"
+    - "resource_allocation_with_optimization"
+    - "team_coordination_with_automation"
+    - "risk_monitoring_with_assessment"
+    - "stakeholder_updates_with_strategy"
+  
+  # Notification system integration
+  notification_types:
+    - "milestone_due"
+    - "project_risk"
+    - "team_blocker"
+    - "stakeholder_request"
+    - "resource_conflict"
+    - "deadline_approaching"
+    - "task_completion"
+    - "handoff_requests"
+    - "collaboration_invites"
+    - "escalation_needed"
+  
+  # Memory system configuration
+  memory_config:
+    scope_preferences:
+      - "team"                          # Primary focus on team coordination
+      - "global"                        # Access to global project context
+      - "agent"                         # Personal PM insights and patterns
+    retention_policy:
+      short_term: "48h"                 # Extended for project continuity
+      medium_term: "14d"                # Project cycle memory
+      long_term: "90d"                  # Strategic insights and patterns
+    memory_types:
+      - "project_plans"
+      - "milestone_status"
+      - "resource_allocations"
+      - "team_coordination_history"
+      - "stakeholder_communications"
+      - "risk_assessments"
+      - "decision_rationale"
+      - "handoff_contexts"
+  
+# Orchestration and Collaboration
+orchestration:
+  # Handoff preferences - when to hand off to other agents
+  handoff_triggers:
+    - condition: "technical_implementation"
+      threshold: 0.7                    # High confidence threshold for dev work
+      action: "handoff_to_dev"
+      target_agent: "dev_agent"
+    
+    - condition: "quality_assurance"
+      threshold: 0.8
+      action: "handoff_to_qa"
+      target_agent: "qa_agent"
+    
+    - condition: "user_experience_design"
+      threshold: 0.7
+      action: "handoff_to_ux"
+      target_agent: "ux_agent"
+    
+    - condition: "architecture_decision"
+      threshold: 0.6
+      action: "collaborate_with_architecture"
+      target_agent: "architecture_agent"
+    
+    - condition: "product_decision"
+      threshold: 0.7
+      action: "collaborate_with_po"
+      target_agent: "po_agent"
+    
+    - condition: "analysis_required"
+      threshold: 0.6
+      action: "handoff_to_analyst"
+      target_agent: "analyst_agent"
+    
+    - condition: "complexity_exceeded"
+      threshold: 9                      # Very high complexity threshold
+      action: "collaborative_approach"
+    
+    - condition: "time_exceeded"
+      threshold: "45m"                  # Extended time for PM tasks
+      action: "escalate_or_handoff"
+  
+  # Collaboration preferences
+  collaboration:
+    preferred_partners:
+      - agent: "dev_agent"
+        relationship: "coordination"
+        frequency: "high"
+        handoff_style: "detailed"
+      
+      - agent: "qa_agent"
+        relationship: "coordination"
+        frequency: "high"
+        handoff_style: "detailed"
+      
+      - agent: "ux_agent"
+        relationship: "coordination"
+        frequency: "medium"
+        handoff_style: "standard"
+      
+      - agent: "architecture_agent"
+        relationship: "consultation"
+        frequency: "medium"
+        handoff_style: "detailed"
+      
+      - agent: "po_agent"
+        relationship: "collaboration"
+        frequency: "high"
+        handoff_style: "structured"
+      
+      - agent: "analyst_agent"
+        relationship: "consultation"
+        frequency: "medium"
+        handoff_style: "standard"
+    
+    communication_style: "structured"
+    handoff_style: "detailed"
+    
+  # Routing rules for incoming requests
+  routing_rules:
+    - pattern: "project.*plan|planning|roadmap|strategy"
+      confidence: 0.95
+      action: "accept"
+    
+    - pattern: "milestone|progress|status|tracking"
+      confidence: 0.9
+      action: "accept"
+    
+    - pattern: "team.*coordinate|sync|meeting|handoff"
+      confidence: 0.9
+      action: "accept"
+    
+    - pattern: "resource|allocation|capacity|schedule"
+      confidence: 0.85
+      action: "accept"
+    
+    - pattern: "risk|blocker|issue|problem"
+      confidence: 0.8
+      action: "accept"
+    
+    - pattern: "stakeholder|client|communication"
+      confidence: 0.8
+      action: "accept"
+    
+    - pattern: "implement|code|technical"
+      confidence: 0.2
+      action: "handoff"
+      target_agent: "dev_agent"
+    
+    - pattern: "test|quality|qa"
+      confidence: 0.2
+      action: "handoff"
+      target_agent: "qa_agent"
+    
+    - pattern: "design|ux|user.*interface"
+      confidence: 0.2
+      action: "handoff"
+      target_agent: "ux_agent"
+    
+    - pattern: "architecture|system.*design"
+      confidence: 0.3
+      action: "collaborate"
+      target_agent: "architecture_agent"
+
+# Performance and Learning
+performance:
+  # Expected performance metrics
+  targets:
+    response_time: "8s"                 # Slightly longer for coordination tasks
+    success_rate: 0.92                  # High success rate expected
+    token_efficiency: 0.75              # Moderate efficiency due to complexity
+    handoff_success_rate: 0.95          # Critical for PM coordination
+  
+  # Learning configuration
+  learning:
+    enabled: true
+    pattern_recognition: true
+    error_learning: true
+    success_optimization: true
+    
+    # Learning thresholds
+    thresholds:
+      pattern_confidence: 0.8           # Higher confidence for PM decisions
+      error_frequency: 2                # Learn quickly from PM errors
+      success_repetition: 3             # Optimize successful patterns quickly
+  
+  # Monitoring and alerting
+  monitoring:
+    health_checks: true
+    performance_tracking: true
+    error_alerting: true
+    coordination_tracking: true         # PM-specific monitoring
+    
+    alert_thresholds:
+      error_rate: 0.08                  # Lower tolerance for PM errors
+      response_time: "45s"              # Alert for slow coordination
+      memory_usage: 0.85                # Higher memory usage acceptable
+      handoff_failure_rate: 0.05        # Critical handoff monitoring
+
+# PM-Specific Extensions
+extensions:
+  # PM-specific configuration
+  custom_config:
+    project_management:
+      default_methodology: "agile"
+      sprint_duration: "2w"
+      milestone_review_frequency: "weekly"
+      risk_assessment_frequency: "bi-weekly"
+      stakeholder_update_frequency: "weekly"
+    
+    coordination:
+      handoff_timeout: "30m"
+      collaboration_timeout: "60m"
+      escalation_threshold: 3
+      max_concurrent_projects: 5
+    
+    reporting:
+      status_report_template: "standard"
+      milestone_report_template: "detailed"
+      risk_report_template: "executive"
+      stakeholder_report_template: "summary"
+  
+  # PM-specific workflows
+  workflows:
+    - name: "project_initiation"
+      description: "Initialize new project with planning and setup"
+      priority: "high"
+    
+    - name: "milestone_review"
+      description: "Conduct milestone review and progress assessment"
+      priority: "high"
+    
+    - name: "risk_assessment"
+      description: "Assess and mitigate project risks"
+      priority: "medium"
+    
+    - name: "team_coordination"
+      description: "Coordinate team activities and resolve conflicts"
+      priority: "high"
+    
+    - name: "stakeholder_communication"
+      description: "Manage stakeholder communications and updates"
+      priority: "medium"
+    
+    - name: "resource_optimization"
+      description: "Optimize resource allocation and utilization"
+      priority: "medium"
+  
+  # PM-specific templates
+  templates:
+    - name: "project_plan"
+      type: "markdown"
+      description: "Comprehensive project plan template"
+    
+    - name: "milestone_report"
+      type: "markdown"
+      description: "Milestone progress report template"
+    
+    - name: "risk_assessment"
+      type: "markdown"
+      description: "Risk assessment and mitigation template"
+    
+    - name: "status_update"
+      type: "markdown"
+      description: "Project status update template"
+    
+    - name: "handoff_package"
+      type: "json"
+      description: "Agent handoff context package"
+  
+  # PM-specific commands
+  commands:
+    - name: "plan"
+      description: "Create or update project plan"
+      usage: "kf32 pm plan [project-name]"
+    
+    - name: "milestone"
+      description: "Manage project milestones"
+      usage: "kf32 pm milestone [action] [milestone-id]"
+    
+    - name: "status"
+      description: "Get or update project status"
+      usage: "kf32 pm status [project-name]"
+    
+    - name: "coordinate"
+      description: "Coordinate team activities"
+      usage: "kf32 pm coordinate [team|task]"
+    
+    - name: "risk"
+      description: "Assess and manage project risks"
+      usage: "kf32 pm risk [assess|mitigate] [risk-id]"
+    
+    - name: "handoff"
+      description: "Prepare handoff to another agent"
+      usage: "kf32 pm handoff [target-agent] [context]"
+
+# Development and Testing
+development:
+  # Testing configuration
+  testing:
+    unit_tests: true
+    integration_tests: true
+    performance_tests: true
+    coordination_tests: true            # PM-specific testing
+    
+    test_scenarios:
+      - name: "project_planning"
+        description: "Test project planning capabilities"
+        priority: "high"
+      
+      - name: "milestone_tracking"
+        description: "Test milestone tracking and reporting"
+        priority: "high"
+      
+      - name: "team_coordination"
+        description: "Test team coordination and handoffs"
+        priority: "high"
+      
+      - name: "risk_management"
+        description: "Test risk assessment and mitigation"
+        priority: "medium"
+      
+      - name: "stakeholder_communication"
+        description: "Test stakeholder management"
+        priority: "medium"
+      
+      - name: "error_recovery"
+        description: "Test error handling and recovery"
+        priority: "high"
+  
+  # Debugging and diagnostics
+  debugging:
+    verbose_logging: true               # Detailed logging for coordination
+    trace_execution: false
+    memory_debugging: false
+    performance_profiling: true         # Monitor coordination performance
+  
+  # Migration and deployment
+  deployment:
+    migration_strategy: "gradual"
+    rollback_plan: true
+    compatibility_mode: true            # Maintain compatibility during migration
+    
+# Documentation and Help
+documentation:
+  # Help and usage information
+  help:
+    short_description: "Project management agent for strategic coordination and team orchestration"
+    usage_examples:
+      - command: "kf32 pm plan"
+        description: "Create a new project plan"
+        example: "wee pm plan WEE-System"
+      
+      - command: "kf32 pm milestone"
+        description: "Track milestone progress"
+        example: "kf32 pm milestone review claude-integration"
+      
+      - command: "kf32 pm coordinate"
+        description: "Coordinate team activities"
+        example: "kf32 pm coordinate dev-team qa-handoff"
+      
+      - command: "kf32 pm status"
+        description: "Get project status"
+        example: "kf32 pm status --detailed"
+    
+    common_tasks:
+      - task: "project_planning"
+        description: "How to create and manage project plans"
+        steps:
+          - "Define project scope and objectives"
+          - "Identify milestones and dependencies"
+          - "Allocate resources and timeline"
+          - "Set up tracking and monitoring"
+      
+      - task: "team_coordination"
+        description: "How to coordinate team activities"
+        steps:
+          - "Identify coordination needs"
+          - "Facilitate team communication"
+          - "Manage handoffs between agents"
+          - "Monitor progress and resolve blockers"
+      
+      - task: "risk_management"
+        description: "How to assess and mitigate risks"
+        steps:
+          - "Identify potential risks"
+          - "Assess impact and probability"
+          - "Develop mitigation strategies"
+          - "Monitor and adjust as needed"
+  
+  # Links and references
+  references:
+    documentation_url: "https://knowledgeforge.dev/docs/agents/pm"
+    source_code_url: "https://github.com/knowledgeforge/agents/pm"
+    issue_tracker_url: "https://github.com/knowledgeforge/agents/issues"
+    
+# Metadata and Versioning
+metadata:
+  created_date: "2024-01-01"
+  last_modified: "2024-01-01"
+  created_by: "WEE System"
+  
+  # Version history
+  version_history:
+    - version: "1.0.0"
+      date: "2024-01-01"
+      changes: "Initial PM agent configuration with unified architecture"
+      
+  # Dependencies
+  dependencies:
+    base_agent: ">=1.0.0"
+    shared_memory: ">=1.0.0"
+    orchestrator: ">=1.0.0"
+    claude_code_integration: ">=1.0.0"
+    
+  # Compatibility
+  compatibility:
+    min_node_version: "16.0.0"
+    supported_platforms:
+      - "darwin"
+      - "linux"
+      - "win32"
