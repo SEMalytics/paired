@@ -1,0 +1,7 @@
+{
+  "version": "1.0.0-build.20250826.0809",
+  "tag": "v1.0.0-build.20250826.0809",
+  "deployment": "windsurf-pre-prod",
+  "timestamp": "2025-08-26T15:09:55Z",
+  "source_commit": "2e703005db76ef6e1c16896858cd2735056fd3c1"
+}

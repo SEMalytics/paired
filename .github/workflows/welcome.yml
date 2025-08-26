@@ -1,0 +1,53 @@
+name: Welcome New Contributors
+
+on:
+  issues:
+    types: [opened]
+  pull_request:
+    types: [opened]
+
+jobs:
+  welcome:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Welcome new contributors
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const { owner, repo } = context.repo;
+          const { number } = context.issue || context.payload.pull_request;
+          
+          if (context.eventName === 'issues') {
+            await github.rest.issues.createComment({
+              owner,
+              repo,
+              issue_number: number,
+              body: `👋 Thanks for opening your first issue! Welcome to the PAIRED community. 
+
+              🤖 Our 7 AI agents are here to help:
+              - Alex (PM) for strategic guidance
+              - Sherlock (QA) for quality investigation
+              - Edison (Dev) for implementation help
+              - Leonardo (Architecture) for system design
+              - Maya (UX) for user experience
+              - Vince (Scrum Master) for process guidance  
+              - Marie (Analyst) for data insights
+
+              Please make sure to include the output from \`paired-doctor\` to help us assist you better!`
+            });
+          } else {
+            await github.rest.pulls.createReview({
+              owner,
+              repo,
+              pull_number: number,
+              body: `🎉 Thanks for your first contribution! Welcome to the PAIRED community.
+
+              Your PR will be reviewed by our team. Please ensure:
+              - [ ] You've tested with \`paired-doctor\`
+              - [ ] Documentation is updated if needed
+              - [ ] Agent behavior changes are documented
+
+              We appreciate your contribution to making AI-enabled development better for everyone!`,
+              event: 'COMMENT'
+            });
+          }

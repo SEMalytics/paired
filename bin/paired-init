@@ -1,0 +1,10 @@
+#!/bin/bash
+# PAIRED Init - Project Initialization Wrapper
+# Calls the main init-project.sh script
+
+# Get the directory where this script is located
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
+
+# Execute the init-project.sh script
+exec "$PROJECT_ROOT/scripts/init-project.sh" "$@"
