@@ -1,0 +1,32 @@
+#!/bin/bash
+# PAIRED Registry Management Command
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+
+case "${1:-update}" in
+    "update")
+        echo "🔄 Updating script registry..."
+        node "$SCRIPT_DIR/scripts/update-script-registry.js" "${@:2}"
+        ;;
+    "check")
+        echo "🔍 Checking registry (dry run)..."
+        node "$SCRIPT_DIR/scripts/update-script-registry.js" --dry-run "${@:2}"
+        ;;
+    "help"|"--help"|"-h")
+        echo "PAIRED Script Registry Management"
+        echo ""
+        echo "Usage:"
+        echo "  paired-registry [update]     - Update the script registry"
+        echo "  paired-registry check        - Check what would be updated (dry run)"
+        echo "  paired-registry help         - Show this help"
+        echo ""
+        echo "Options:"
+        echo "  --verbose    Show detailed scanning information"
+        echo "  --dry-run    Show what would be updated without making changes"
+        ;;
+    *)
+        echo "Unknown command: $1"
+        echo "Use 'paired-registry help' for usage information"
+        exit 1
+        ;;
+esac

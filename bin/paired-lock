@@ -1,0 +1,4 @@
+#!/bin/bash
+# PAIRED Lock System - Global Command
+cd "$(dirname "$0")/.."
+exec ./scripts/paired-lock.sh "$@"

@@ -1,0 +1,256 @@
+# PAIRED Handoff Configuration Template
+# This file defines handoff generation settings and templates for different scenarios
+
+handoff_types:
+  session_handoff:
+    name: "Development Session Handoff"
+    description: "End-of-session handoff for ongoing development work"
+    template: "session-handoff-template.md"
+    auto_generate: true
+    include_sections:
+      - current_plan
+      - recent_changes
+      - git_status
+      - project_structure
+      - working_state
+      - next_steps
+      - important_resources
+    
+  project_handoff:
+    name: "Complete Project Handoff"
+    description: "Comprehensive handoff for project transfer or major milestone"
+    template: "project-handoff-template.md"
+    auto_generate: false
+    include_sections:
+      - executive_summary
+      - project_overview
+      - architecture_overview
+      - current_plan
+      - implementation_status
+      - recent_changes
+      - git_status
+      - project_structure
+      - agent_configurations
+      - deployment_status
+      - testing_status
+      - known_issues
+      - next_steps
+      - team_contacts
+      - important_resources
+      - troubleshooting_guide
+    
+  milestone_handoff:
+    name: "Milestone Completion Handoff"
+    description: "Handoff documenting completed milestone or major feature"
+    template: "milestone-handoff-template.md"
+    auto_generate: false
+    include_sections:
+      - milestone_summary
+      - achievements
+      - current_plan
+      - implementation_details
+      - testing_results
+      - deployment_notes
+      - git_status
+      - next_milestones
+      - important_resources
+
+# Section configurations
+sections:
+  executive_summary:
+    title: "Executive Summary"
+    description: "High-level project status and key achievements"
+    priority: 1
+    
+  project_overview:
+    title: "Project Overview"
+    description: "Project goals, scope, and current status"
+    priority: 2
+    
+  architecture_overview:
+    title: "Architecture Overview"
+    description: "System architecture and key design decisions"
+    priority: 3
+    
+  current_plan:
+    title: "Current Plan Status"
+    description: "Active plan from Windsurf brain or project planning"
+    priority: 4
+    source: "windsurf_brain"
+    fallback: "manual_entry"
+    
+  implementation_status:
+    title: "Implementation Status"
+    description: "Current implementation progress and completed features"
+    priority: 5
+    
+  recent_changes:
+    title: "Recent Changes"
+    description: "Recent commits and modifications"
+    priority: 6
+    source: "git_log"
+    limit: 10
+    
+  git_status:
+    title: "Git Status"
+    description: "Current branch, status, and repository information"
+    priority: 7
+    source: "git_status"
+    
+  project_structure:
+    title: "Project Structure"
+    description: "Key files and directory structure"
+    priority: 8
+    source: "file_system"
+    include_patterns:
+      - "*.js"
+      - "*.py"
+      - "*.md"
+      - "*.json"
+      - "*.yml"
+      - "*.yaml"
+    exclude_patterns:
+      - "node_modules/*"
+      - ".git/*"
+      - "*.log"
+    
+  agent_configurations:
+    title: "Agent Configurations"
+    description: "PAIRED agent setup and configurations"
+    priority: 9
+    source: "paired_config"
+    
+  deployment_status:
+    title: "Deployment Status"
+    description: "Current deployment state and configurations"
+    priority: 10
+    
+  testing_status:
+    title: "Testing Status"
+    description: "Test results and coverage information"
+    priority: 11
+    
+  working_state:
+    title: "Current Working State"
+    description: "What was being worked on and current state"
+    priority: 12
+    
+  known_issues:
+    title: "Known Issues"
+    description: "Current bugs, limitations, and technical debt"
+    priority: 13
+    
+  next_steps:
+    title: "Next Steps"
+    description: "Immediate next actions and priorities"
+    priority: 14
+    
+  next_milestones:
+    title: "Next Milestones"
+    description: "Upcoming milestones and major objectives"
+    priority: 15
+    
+  team_contacts:
+    title: "Team Contacts"
+    description: "Key team members and contact information"
+    priority: 16
+    
+  important_resources:
+    title: "Important Resources"
+    description: "Key documentation, links, and reference materials"
+    priority: 17
+    
+  troubleshooting_guide:
+    title: "Troubleshooting Guide"
+    description: "Common issues and their solutions"
+    priority: 18
+    
+  milestone_summary:
+    title: "Milestone Summary"
+    description: "Summary of completed milestone objectives"
+    priority: 1
+    
+  achievements:
+    title: "Key Achievements"
+    description: "Major accomplishments and deliverables"
+    priority: 2
+    
+  implementation_details:
+    title: "Implementation Details"
+    description: "Technical implementation specifics"
+    priority: 3
+    
+  testing_results:
+    title: "Testing Results"
+    description: "Test execution results and validation"
+    priority: 4
+    
+  deployment_notes:
+    title: "Deployment Notes"
+    description: "Deployment process and configuration notes"
+    priority: 5
+
+# Output configurations
+output:
+  default_filename: "CURRENT_SESSION_HANDOFF.md"
+  timestamp_format: "%Y-%m-%d %H:%M:%S"
+  include_timestamp: true
+  include_generator_info: true
+  
+# Data sources
+data_sources:
+  windsurf_brain:
+    path: "$HOME/.codeium/windsurf/brain"
+    pattern: "*/plan.md"
+    selection: "most_recent"
+    
+  git_log:
+    command: "git log --oneline"
+    default_limit: 10
+    
+  git_status:
+    commands:
+      - "git status"
+      - "git branch"
+      - "git remote -v"
+      
+  file_system:
+    base_path: "."
+    max_depth: 3
+    
+  paired_config:
+    paths:
+      - ".paired/"
+      - ".windsurfrules"
+      - "templates/"
+
+# Validation and quality checks
+validation:
+  required_sections:
+    session_handoff:
+      - current_plan
+      - working_state
+      - next_steps
+    project_handoff:
+      - executive_summary
+      - project_overview
+      - current_plan
+      - next_steps
+    milestone_handoff:
+      - milestone_summary
+      - achievements
+      - next_milestones
+      
+  minimum_content_length: 100  # characters per section
+  
+# Automation settings
+automation:
+  auto_generate_on_commit: false
+  auto_generate_on_branch_switch: false
+  auto_generate_on_session_end: true
+  
+# Integration settings
+integration:
+  slack_notifications: false
+  email_notifications: false
+  git_commit_handoff: false
