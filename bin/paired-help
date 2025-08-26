@@ -1,0 +1,351 @@
+#!/bin/bash
+#
+# PAIRED Help System
+# Central command for all PAIRED documentation and assistance
+#
+
+set -eo pipefail
+
+# Colors
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+CYAN='\033[0;36m'
+MAGENTA='\033[0;35m'
+BOLD='\033[1m'
+NC='\033[0m'
+
+# Configuration
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PAIRED_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+VERSION=$(cat "$PAIRED_ROOT/.paired/version" 2>/dev/null || echo "1.0.0")
+
+# Function to show header
+show_header() {
+    cat << 'EOF'
+    ____  ___    ________  __________ 
+   / __ \/   |  /  _/ __ \/ ____/ __ \
+  / /_/ / /| |  / // /_/ / __/ / / / /
+ / ____/ ___ |_/ // _, _/ /___/ /_/ / 
+/_/   /_/  |_/___/_/ |_/_____/_____/  
+                                       
+EOF
+    echo -e "${CYAN}Platform for AI-Enabled Remote Development${NC}"
+    echo -e "Version: ${GREEN}$VERSION${NC}"
+    echo ""
+}
+
+# Function to show main help
+show_main_help() {
+    show_header
+    
+    echo -e "${BOLD}${BLUE}Quick Start${NC}"
+    echo "==========="
+    echo -e "  ${GREEN}paired-start${NC}           Start PAIRED agents and bridge"
+    echo -e "  ${GREEN}paired-health${NC}          Check system health"
+    echo -e "  ${GREEN}paired-help [topic]${NC}    Show help for specific topic"
+    echo ""
+    
+    echo -e "${BOLD}${BLUE}Available Commands${NC}"
+    echo "=================="
+    echo -e "${CYAN}System Management:${NC}"
+    echo -e "  paired-start           Start all PAIRED services"
+    echo -e "  paired-start status    Check service status"
+    echo -e "  paired-start stop      Stop all services"
+    echo -e "  paired-health          System health monitor"
+    echo -e "  paired-health --watch  Continuous monitoring"
+    echo ""
+    
+    echo -e "${CYAN}Memory Management:${NC}"
+    echo -e "  memory-manager status   Show memory statistics"
+    echo -e "  memory-manager compact  Optimize memory storage"
+    echo -e "  memory-manager cleanup  Remove old entries"
+    echo -e "  memory-manager export   Backup memory to file"
+    echo -e "  memory-manager import   Restore memory from backup"
+    echo ""
+    
+    echo -e "${CYAN}Deployment:${NC}"
+    echo -e "  deploy-claude.sh        Deploy Claude components"
+    echo -e "  deploy-windsurf.sh      Deploy Windsurf components"
+    echo -e "  validate-deployment.sh  Pre-deployment validation"
+    echo -e "  promote-to-production   Promote to production"
+    echo -e "  rollback-production     Rollback production changes"
+    echo ""
+    
+    echo -e "${CYAN}Development:${NC}"
+    echo -e "  paired-doctor          Diagnose system issues"
+    echo -e "  paired-dev-workflow    Development workflow helper"
+    echo -e "  bridge-status          Check bridge connectivity"
+    echo ""
+    
+    echo -e "${BOLD}${BLUE}Help Topics${NC}"
+    echo "==========="
+    echo -e "  ${YELLOW}paired-help agents${NC}      Learn about PAIRED agents"
+    echo -e "  ${YELLOW}paired-help bridge${NC}      Bridge architecture guide"
+    echo -e "  ${YELLOW}paired-help memory${NC}      Memory system documentation"
+    echo -e "  ${YELLOW}paired-help deployment${NC}  Deployment process guide"
+    echo -e "  ${YELLOW}paired-help quickstart${NC}  Getting started guide"
+    echo -e "  ${YELLOW}paired-help trouble${NC}     Troubleshooting guide"
+    echo ""
+    
+    echo -e "${BOLD}${BLUE}Configuration Files${NC}"
+    echo "==================="
+    echo -e "  ${MAGENTA}CLAUDE.md${NC}             Claude Code configuration"
+    echo -e "  ${MAGENTA}.windsurfrules${NC}        Windsurf configuration"
+    echo -e "  ${MAGENTA}.paired/version${NC}       Version information"
+    echo ""
+    
+    echo -e "${CYAN}For more information:${NC}"
+    echo -e "  Documentation: ${BLUE}.paired/docs/${NC}"
+    echo -e "  Issues: ${BLUE}https://github.com/internexio/paired/issues${NC}"
+}
+
+# Function to show agents help
+show_agents_help() {
+    show_header
+    echo -e "${BOLD}${BLUE}PAIRED Agent Team${NC}"
+    echo "================="
+    echo ""
+    echo -e "${CYAN}Meet Your AI Development Team:${NC}"
+    echo ""
+    echo -e "  👑 ${BOLD}Alex (PM)${NC} - Strategic Project Manager"
+    echo -e "     Port: 7890 | Supreme Commander"
+    echo -e "     Coordinates all team activities and strategic decisions"
+    echo ""
+    echo -e "  🕵️ ${BOLD}Sherlock (QA)${NC} - Quality Detective"
+    echo -e "     Port: 7891 | Quality Command Authority"
+    echo -e "     Investigates bugs, ensures quality, and validates functionality"
+    echo ""
+    echo -e "  ⚡ ${BOLD}Edison (Dev)${NC} - Implementation Specialist"
+    echo -e "     Port: 7892 | Implementation Command Authority"
+    echo -e "     Persistent problem-solver, handles all coding tasks"
+    echo ""
+    echo -e "  🏛️ ${BOLD}Leonardo (Architecture)${NC} - System Architect"
+    echo -e "     Port: 7893 | Design Command Authority"
+    echo -e "     Visionary system designer, creates scalable architectures"
+    echo ""
+    echo -e "  🎨 ${BOLD}Maya (UX)${NC} - User Experience Designer"
+    echo -e "     Port: 7894 | Experience Command Authority"
+    echo -e "     Empathetic designer focused on human-centered interfaces"
+    echo ""
+    echo -e "  🏈 ${BOLD}Vince (Scrum Master)${NC} - Process Coach"
+    echo -e "     Port: 7895 | Process Command Authority"
+    echo -e "     Disciplined team coach, manages sprints and workflows"
+    echo ""
+    echo -e "  🔬 ${BOLD}Marie (Analyst)${NC} - Data Scientist"
+    echo -e "     Port: 7896 | Data Command Authority"
+    echo -e "     Scientific analyst, provides data-driven insights"
+    echo ""
+    echo -e "${CYAN}Using Agents:${NC}"
+    echo -e "  In Claude Code or Windsurf, mention agents by name:"
+    echo -e "  ${GREEN}@alex${NC} Can you coordinate this feature?"
+    echo -e "  ${GREEN}@sherlock${NC} Please review this code for issues"
+    echo -e "  ${GREEN}@edison${NC} Implement the authentication system"
+}
+
+# Function to show bridge help
+show_bridge_help() {
+    show_header
+    echo -e "${BOLD}${BLUE}Bridge Architecture${NC}"
+    echo "==================="
+    echo ""
+    echo -e "${CYAN}Overview:${NC}"
+    echo "  The PAIRED Bridge provides intelligent routing between"
+    echo "  AI assistants (Claude/Windsurf) and PAIRED agents."
+    echo ""
+    echo -e "${CYAN}Communication Flow:${NC}"
+    echo "  User → Assistant → Bridge → Alex → Specialist Agents"
+    echo "  Specialist Agents → Alex → Bridge → Assistant → User"
+    echo ""
+    echo -e "${CYAN}Port Configuration:${NC}"
+    echo "  7890 - Main Bridge & Alex (PM)"
+    echo "  7891 - Sherlock (QA)"
+    echo "  7892 - Edison (Dev)"
+    echo "  7893 - Leonardo (Architecture)"
+    echo "  7894 - Maya (UX)"
+    echo "  7895 - Vince (Scrum Master)"
+    echo "  7896 - Marie (Analyst)"
+    echo ""
+    echo -e "${CYAN}Health Check:${NC}"
+    echo "  ${GREEN}curl http://localhost:7890/health${NC}"
+    echo ""
+    echo -e "${CYAN}Test Relay:${NC}"
+    echo "  ${GREEN}curl http://localhost:7890/test-relay${NC}"
+    echo ""
+    echo -e "For detailed documentation: ${BLUE}.paired/docs/bridge-architecture.md${NC}"
+}
+
+# Function to show memory help
+show_memory_help() {
+    show_header
+    echo -e "${BOLD}${BLUE}Memory System${NC}"
+    echo "============="
+    echo ""
+    echo -e "${CYAN}Overview:${NC}"
+    echo "  PAIRED agents maintain persistent memory across sessions,"
+    echo "  learning from interactions and improving over time."
+    echo ""
+    echo -e "${CYAN}Memory Structure:${NC}"
+    echo "  .paired/memory/"
+    echo "    ├── alex/       # Strategic decisions"
+    echo "    ├── sherlock/   # QA findings"
+    echo "    ├── edison/     # Code patterns"
+    echo "    ├── leonardo/   # Architecture decisions"
+    echo "    ├── maya/       # UX patterns"
+    echo "    ├── vince/      # Process improvements"
+    echo "    └── marie/      # Data insights"
+    echo ""
+    echo -e "${CYAN}Management Commands:${NC}"
+    echo -e "  ${GREEN}memory-manager status${NC}    Check memory usage"
+    echo -e "  ${GREEN}memory-manager compact${NC}   Optimize storage"
+    echo -e "  ${GREEN}memory-manager cleanup${NC}   Remove old entries"
+    echo -e "  ${GREEN}memory-manager export${NC}    Create backup"
+    echo -e "  ${GREEN}memory-manager analyze${NC}   Usage patterns"
+    echo ""
+    echo -e "${CYAN}Limits:${NC}"
+    echo "  Max Size: 50MB"
+    echo "  Max Age: 90 days"
+    echo "  Auto-compaction at 70% capacity"
+}
+
+# Function to show deployment help
+show_deployment_help() {
+    show_header
+    echo -e "${BOLD}${BLUE}Deployment Guide${NC}"
+    echo "================"
+    echo ""
+    echo -e "${CYAN}Deployment Flow:${NC}"
+    echo "  1. Development (paired-dev repo)"
+    echo "  2. Pre-production staging"
+    echo "  3. Production promotion"
+    echo ""
+    echo -e "${CYAN}Pre-Production Repositories:${NC}"
+    echo "  • internexio/paired-pre-prod"
+    echo "  • internexio/paired-claude-pre-prod"
+    echo ""
+    echo -e "${CYAN}Production Repositories:${NC}"
+    echo "  • internexio/paired"
+    echo "  • internexio/paired-claude"
+    echo ""
+    echo -e "${CYAN}Deployment Process:${NC}"
+    echo -e "  1. ${GREEN}validate-deployment.sh [claude|windsurf]${NC}"
+    echo "     Run pre-deployment validation"
+    echo ""
+    echo -e "  2. ${GREEN}deploy-claude.sh${NC} or ${GREEN}deploy-windsurf.sh${NC}"
+    echo "     Deploy to pre-production"
+    echo ""
+    echo -e "  3. Test in pre-production environment"
+    echo ""
+    echo -e "  4. ${GREEN}promote-to-production.sh [paired|claude]${NC}"
+    echo "     Promote to production"
+    echo ""
+    echo -e "${CYAN}Rollback:${NC}"
+    echo -e "  ${GREEN}rollback-production.sh [paired|claude]${NC}"
+    echo "  Restore previous production state"
+    echo ""
+    echo -e "${CYAN}Version Management:${NC}"
+    echo "  Versions follow semantic versioning"
+    echo "  Format: X.Y.Z-build.YYYYMMDD.HHMM"
+}
+
+# Function to show quickstart
+show_quickstart() {
+    show_header
+    echo -e "${BOLD}${BLUE}Quick Start Guide${NC}"
+    echo "================="
+    echo ""
+    echo -e "${CYAN}1. Initial Setup:${NC}"
+    echo -e "   ${GREEN}cd /path/to/project${NC}"
+    echo -e "   ${GREEN}git clone https://github.com/internexio/paired${NC}"
+    echo -e "   ${GREEN}cd paired${NC}"
+    echo -e "   ${GREEN}./install.sh${NC}"
+    echo ""
+    echo -e "${CYAN}2. Start PAIRED:${NC}"
+    echo -e "   ${GREEN}./scripts/paired-start.sh${NC}"
+    echo ""
+    echo -e "${CYAN}3. Verify Health:${NC}"
+    echo -e "   ${GREEN}./scripts/paired-health.sh --quick${NC}"
+    echo ""
+    echo -e "${CYAN}4. Use in IDE:${NC}"
+    echo -e "   Open project in Claude Code or Windsurf"
+    echo -e "   Agents auto-start on IDE open"
+    echo -e "   Mention agents by name: @alex, @sherlock, etc."
+    echo ""
+    echo -e "${CYAN}5. Monitor:${NC}"
+    echo -e "   ${GREEN}./scripts/paired-health.sh --watch${NC}"
+    echo ""
+    echo -e "${CYAN}Tips:${NC}"
+    echo "  • Bridge runs on port 7890"
+    echo "  • Logs in .paired/logs/"
+    echo "  • Memory in .paired/memory/"
+    echo "  • Run paired-doctor for diagnostics"
+}
+
+# Function to show troubleshooting
+show_troubleshooting() {
+    show_header
+    echo -e "${BOLD}${BLUE}Troubleshooting Guide${NC}"
+    echo "===================="
+    echo ""
+    echo -e "${CYAN}Bridge won't start:${NC}"
+    echo "  1. Check port 7890: ${GREEN}lsof -i :7890${NC}"
+    echo "  2. Kill existing: ${GREEN}pkill -f cascade_bridge${NC}"
+    echo "  3. Restart: ${GREEN}./scripts/paired-start.sh${NC}"
+    echo ""
+    echo -e "${CYAN}Agent not responding:${NC}"
+    echo "  1. Check status: ${GREEN}./scripts/paired-health.sh${NC}"
+    echo "  2. Check port: ${GREEN}nc -z localhost 789X${NC}"
+    echo "  3. Restart all: ${GREEN}./scripts/paired-start.sh stop && ./scripts/paired-start.sh${NC}"
+    echo ""
+    echo -e "${CYAN}Memory issues:${NC}"
+    echo "  1. Check size: ${GREEN}./scripts/memory-manager.sh status${NC}"
+    echo "  2. Compact: ${GREEN}./scripts/memory-manager.sh compact${NC}"
+    echo "  3. Cleanup: ${GREEN}./scripts/memory-manager.sh cleanup${NC}"
+    echo ""
+    echo -e "${CYAN}Deployment failed:${NC}"
+    echo "  1. Run validation: ${GREEN}./scripts/validate-deployment.sh${NC}"
+    echo "  2. Check logs: ${GREEN}tail -f .paired/logs/*.log${NC}"
+    echo "  3. Rollback if needed: ${GREEN}./scripts/rollback-production.sh${NC}"
+    echo ""
+    echo -e "${CYAN}General diagnostics:${NC}"
+    echo -e "  ${GREEN}./scripts/paired-doctor.sh${NC}"
+    echo ""
+    echo -e "${CYAN}Get help:${NC}"
+    echo "  GitHub Issues: https://github.com/internexio/paired/issues"
+}
+
+# Main execution
+TOPIC="${1:-main}"
+
+case "$TOPIC" in
+    "main"|"")
+        show_main_help
+        ;;
+    "agents")
+        show_agents_help
+        ;;
+    "bridge")
+        show_bridge_help
+        ;;
+    "memory")
+        show_memory_help
+        ;;
+    "deployment"|"deploy")
+        show_deployment_help
+        ;;
+    "quickstart"|"quick")
+        show_quickstart
+        ;;
+    "troubleshooting"|"trouble"|"debug")
+        show_troubleshooting
+        ;;
+    "--version"|"-v")
+        echo "PAIRED version $VERSION"
+        ;;
+    *)
+        echo -e "${YELLOW}Unknown topic: $TOPIC${NC}"
+        echo ""
+        show_main_help
+        ;;
+esac

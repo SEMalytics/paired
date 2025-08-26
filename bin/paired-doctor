@@ -1,0 +1,3 @@
+#!/bin/bash
+# PAIRED Doctor executable wrapper
+exec "$HOME/.paired/scripts/paired-doctor.sh" "$@"

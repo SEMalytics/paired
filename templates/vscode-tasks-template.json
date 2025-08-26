@@ -1,0 +1,100 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "PAIRED: Auto-Start Complete System",
+      "type": "shell",
+      "command": "${env:HOME}/.paired/scripts/activate_cascade_complete.sh && node -e \"require('${workspaceFolder}/.cascade_config.js'); console.log('✅ CASCADE relay configuration loaded');\"",
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "new",
+        "showReuseMessage": true,
+        "clear": false
+      },
+      "isBackground": true,
+      "problemMatcher": [],
+      "runOptions": {
+        "runOn": "folderOpen"
+      },
+      "options": {
+        "shell": {
+          "executable": "/bin/zsh",
+          "args": ["-c"]
+        }
+      },
+      "detail": "Auto-starts PAIRED bridge/agents + loads CASCADE relay configuration on folder open"
+    },
+    {
+      "label": "PAIRED: Manual Start Bridge",
+      "type": "shell",
+      "command": "${env:HOME}/.paired/scripts/activate_cascade_complete.sh",
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "new"
+      },
+      "isBackground": true,
+      "problemMatcher": [],
+      "detail": "Manually start PAIRED bridge and agents"
+    },
+    {
+      "label": "PAIRED: Stop Bridge & Agents",
+      "type": "shell",
+      "command": "pkill -f 'cascade_bridge_unified_takeover.js' && pkill -f 'agent_launcher.js'",
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "new"
+      },
+      "detail": "Stop all PAIRED bridge and agent processes"
+    },
+    {
+      "label": "PAIRED: Check Bridge Status",
+      "type": "shell",
+      "command": "${workspaceFolder}/bin/paired-monitor",
+      "group": "test",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "new"
+      },
+      "detail": "Check status of PAIRED bridge and agents"
+    },
+    {
+      "label": "PAIRED: Restart Bridge & Agents",
+      "type": "shell",
+      "command": "pkill -f 'cascade_bridge_unified_takeover.js' && pkill -f 'agent_launcher.js' && sleep 2 && ${env:HOME}/.paired/scripts/activate_cascade_complete.sh",
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "new"
+      },
+      "isBackground": true,
+      "problemMatcher": [],
+      "detail": "Restart PAIRED bridge and agents (stop then start)"
+    },
+    {
+      "label": "PAIRED: Validate Setup",
+      "type": "shell",
+      "command": "if [ -f \"${env:HOME}/.paired/scripts/activate_cascade_complete.sh\" ]; then echo \"✅ PAIRED script found and executable\"; ls -la \"${env:HOME}/.paired/scripts/activate_cascade_complete.sh\"; else echo \"❌ PAIRED script not found at ${env:HOME}/.paired/scripts/activate_cascade_complete.sh\"; fi",
+      "group": "test",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "new"
+      },
+      "detail": "Validate PAIRED setup and script permissions"
+    }
+  ]
+}

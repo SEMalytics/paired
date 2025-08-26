@@ -1,0 +1,34 @@
+{
+  "task.allowAutomaticTasks": "on",
+  "task.autoDetect": "on",
+  "task.showDecorations": true,
+  "terminal.integrated.allowWorkspaceConfiguration": true,
+  "terminal.integrated.automationProfile.osx": {
+    "path": "/bin/zsh",
+    "args": ["-l"]
+  },
+  "terminal.integrated.automationProfile.linux": {
+    "path": "/bin/bash",
+    "args": ["-l"]
+  },
+  "files.watcherExclude": {
+    "**/.paired/**": true,
+    "**/node_modules/**": true,
+    "**/.git/**": true
+  },
+  "search.exclude": {
+    "**/.paired/**": true,
+    "**/node_modules/**": true
+  },
+  "cascade.context.includeFiles": [
+    "**/*.js",
+    "**/*.md",
+    "**/*.yml",
+    "**/*.json"
+  ],
+  "cascade.context.excludeFiles": [
+    "**/.paired/**",
+    "**/node_modules/**",
+    "**/*.log"
+  ]
+}

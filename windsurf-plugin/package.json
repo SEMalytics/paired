@@ -1,0 +1,142 @@
+{
+  "name": "paired-windsurf",
+  "displayName": "PAIRED - AI Agent Integration",
+  "description": "Seamless integration with PAIRED AI agents for intelligent development assistance",
+  "version": "1.0.0",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Other",
+    "Machine Learning",
+    "Snippets"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./src/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "paired.connectAgents",
+        "title": "Connect to PAIRED Agents",
+        "category": "PAIRED"
+      },
+      {
+        "command": "paired.optimizeContext",
+        "title": "Optimize Context",
+        "category": "PAIRED"
+      },
+      {
+        "command": "paired.showAgentPanel",
+        "title": "Show Agent Panel",
+        "category": "PAIRED"
+      },
+      {
+        "command": "paired.askSherlock",
+        "title": "🕵️ Ask Sherlock (QA)",
+        "category": "PAIRED"
+      },
+      {
+        "command": "paired.askAlex",
+        "title": "👑 Ask Alex (PM)",
+        "category": "PAIRED"
+      },
+      {
+        "command": "paired.askLeonardo",
+        "title": "🏛️ Ask Leonardo (Architecture)",
+        "category": "PAIRED"
+      },
+      {
+        "command": "paired.askEdison",
+        "title": "⚡ Ask Edison (Dev)",
+        "category": "PAIRED"
+      },
+      {
+        "command": "paired.askMaya",
+        "title": "🎨 Ask Maya (UX)",
+        "category": "PAIRED"
+      },
+      {
+        "command": "paired.askVince",
+        "title": "🏈 Ask Vince (Scrum Master)",
+        "category": "PAIRED"
+      },
+      {
+        "command": "paired.askMarie",
+        "title": "🔬 Ask Marie (Analyst)",
+        "category": "PAIRED"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "paired.showAgentPanel",
+        "key": "ctrl+shift+p",
+        "mac": "cmd+shift+p"
+      },
+      {
+        "command": "paired.optimizeContext",
+        "key": "ctrl+shift+o",
+        "mac": "cmd+shift+o"
+      }
+    ],
+    "views": {
+      "explorer": [
+        {
+          "id": "pairedAgents",
+          "name": "PAIRED Agents",
+          "when": "paired.connected"
+        }
+      ]
+    },
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "paired",
+          "title": "PAIRED",
+          "icon": "$(robot)"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "PAIRED",
+      "properties": {
+        "paired.bridgeUrl": {
+          "type": "string",
+          "default": "ws://localhost:7890",
+          "description": "URL of the PAIRED CASCADE bridge"
+        },
+        "paired.autoConnect": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically connect to PAIRED agents on startup"
+        },
+        "paired.tokenOptimization": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable token optimization for agent interactions"
+        },
+        "paired.optimizationTarget": {
+          "type": "number",
+          "default": 50,
+          "minimum": 20,
+          "maximum": 80,
+          "description": "Target token reduction percentage"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "test": "node ./test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.74.0",
+    "@types/node": "16.x",
+    "eslint": "^8.28.0",
+    "typescript": "^4.9.4"
+  },
+  "dependencies": {
+    "ws": "^8.13.0",
+    "uuid": "^9.0.0"
+  }
+}

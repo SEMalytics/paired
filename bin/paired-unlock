@@ -1,0 +1,4 @@
+#!/bin/bash
+# PAIRED Unlock Command - Unlock .paired directory
+cd "$(dirname "$0")/.."
+exec ./scripts/paired-lock.sh force-unlock "$@"
