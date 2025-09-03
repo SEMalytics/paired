@@ -1,0 +1,68 @@
+{
+  "stack_preferences": {
+    "stack": "go",
+    "go_version": ["1.19", "1.20", "1.21"],
+    "preferred_libraries": {
+      "http": "net/http",
+      "testing": "testing",
+      "json": "encoding/json",
+      "database": "database/sql",
+      "web_framework": ["gin", "echo", "fiber"]
+    },
+    "avoid_patterns": ["global variables", "init() abuse"],
+    "architecture_style": "clean_architecture",
+    "sync_to_global": false,
+    "source": "curated_template"
+  },
+  "architecture_patterns": {
+    "patterns": [
+      "Clean architecture with dependency injection",
+      "Interface-based design", 
+      "Error handling with explicit returns",
+      "Goroutines for concurrency"
+    ],
+    "anti_patterns": [
+      "Global variable abuse",
+      "Excessive init() usage",
+      "Ignoring errors",
+      "Blocking operations in goroutines"
+    ],
+    "sync_to_global": false
+  },
+  "dependency_choices": {
+    "preferred_libraries": {
+      "http": "net/http",
+      "testing": "testing",
+      "web_framework": ["gin", "echo", "fiber"],
+      "database": "database/sql"
+    },
+    "version_preferences": {
+      "go": {
+        "rule": "go-stable",
+        "preferred": ["1.19", "1.20", "1.21"]
+      }
+    },
+    "avoid_libraries": [],
+    "sync_to_global": false
+  },
+  "coding_standards": {
+    "style_conventions": [
+      "Use gofmt for formatting",
+      "Follow Go naming conventions",
+      "Use interfaces for abstraction", 
+      "Handle all errors explicitly"
+    ],
+    "quality_rules": [
+      "Write comprehensive tests",
+      "Use dependency injection",
+      "Avoid global state",
+      "Use context for cancellation"
+    ],
+    "testing_strategies": [
+      "Use standard testing package",
+      "Write table-driven tests",
+      "Use testify for assertions"
+    ],
+    "sync_to_global": false
+  }
+}

@@ -1,0 +1,145 @@
+# PAIRED Windsurf Deployment Configuration
+# WINDSURF DEPLOYMENTS ONLY - NO CLAUDE COMPONENTS
+
+deployment_environments:
+  development:
+    name: "PAIRED Ecosystem Development"
+    repository: "https://github.com/SEMalytics/paired-dev.git"
+    branch: "main"
+    description: "Full PAIRED ecosystem development (Windsurf + Claude)"
+    auto_deploy: true
+    include_dev_docs: true
+    include_test_files: true
+    include_paired_directory: true
+    use_development_codeiumignore: true
+    
+  windsurf-pre-production:
+    name: "Windsurf Pre-Production"
+    repository: "git@github.com:internexio/paired-pre-prod.git"
+    branch: "main"
+    description: "Windsurf pre-production testing (deploy target)"
+    auto_deploy: false
+    include_dev_docs: false
+    include_test_files: false
+    sanitize_sensitive_data: true
+
+# File inclusion rules for different deployment types
+file_rules:
+  essential_core:
+    - "README.md"
+    - "LICENSE"
+    - "bin/paired"
+    - "core/agents/**/*"
+    - "data/**/*"
+    - "scripts/start-agents.sh"
+    - "scripts/lib/bridge/cascade-bridge.js"
+    - "src/cascade-bridge.js"
+    - "src/agent_launcher.js"
+    - "templates/agent_definitions.md"
+    
+  windsurf_specific:
+    - "install.sh"
+    - "scripts/windsurf-*.sh"
+    - "scripts/windsurf_*.js"
+    - "scripts/windsurf_*.sh"
+    - "modules/windsurf-1.0/**/*"
+    - "windsurf-plugin/**/*"
+    - "templates/windsurf*.md"
+    - "templates/windsurfrules"
+    - "templates/global-windsurfrules.md"
+    - "shared/utilities/agent_personality_manager.js"
+    - "src/config/windsurf_agent_types.yml"
+    - "src/config/agent_collaboration_protocol.yml"
+    - "src/config/agent_response_templates.yml"
+    
+  claude_specific:
+    - "modules/claudecode-1.0/**/*"
+    - "templates/CLAUDE.md"
+    - "scripts/claude_code_bridge_extension.js"
+    - "scripts/start-claude-code-bridge.sh"
+    - "shared/utilities/agent_response_relay.js"
+    
+  development_extras:
+    - "docs/development/**/*"
+    - "test/**/*"
+    - "scripts/dev-*"
+    - "planning/**/*"
+    
+  production_essentials:
+    - "docs/user-guide/**/*"
+    - "docs/installation/**/*"
+    - "docs/DEPLOYMENT_GUIDE.md"
+    - "docs/COMMANDS.md"
+    - "docs/QUICK_START.md"
+    - "docs/PROJECT_KNOWLEDGE_GUIDE.md"
+    - "docs/PROJECT_KNOWLEDGE_QUICKSTART.md"
+    - "docs/PHILOSOPHY.md"
+    - "docs/README.md"
+    - "scripts/deploy-*"
+    - "scripts/paired-doctor.sh"
+    
+  strategic_exclusions:
+    # Strategic planning and competitive intelligence (NEVER include in public releases)
+    - "planning/**/*"
+    - "CURRENT_PLAN.md"
+    - "CURRENT_SESSION_HANDOFF.md"
+    - "PROJECT_HANDOFF_*.md"
+    - "MILESTONE_HANDOFF_*.md"
+    - "**/ROADMAP.md"
+    - "**/roadmap.md"
+    - "archive/experimental-docs/**/*"
+    - "archive/legacy-docs/**/*"
+    - "CRITICAL_*"
+    - "PAIRED_*"
+    - "DEBUGGING_*"
+    - "*_ANALYSIS.md"
+    - "COLLABORATOR_*"
+    - "*HANDOFF*"
+    - "**/*key*"
+    - "**/*KEY*"
+    - "**/*secret*"
+    - "**/*SECRET*"
+    - "**/*token*"
+    - "**/*TOKEN*"
+    - "**/*password*"
+    - "**/*PASSWORD*"
+    - "**/.env*"
+    - "**/config/secrets*"
+    - "**/credentials*"
+
+# Security and sanitization rules
+sanitization:
+  remove_patterns:
+    - "# TODO:"
+    - "# FIXME:"
+    - "# DEBUG:"
+    - "console.log"
+    - "debugger;"
+  
+  replace_patterns:
+    - pattern: "/Users/davidpedersen"
+      replacement: "$HOME"
+    - pattern: "EXAMPLE_API_KEY_PLACEHOLDER"
+      replacement: "${API_KEY}"
+
+# Version and release information
+release:
+  version_format: "YYYY.MM.DD"
+  changelog_required: true
+  tag_format: "v{version}"
+  
+# Notification settings
+notifications:
+  slack_webhook: "${SLACK_WEBHOOK_URL}"
+  email_recipients:
+    - "team@paired.dev"
+  
+# Validation requirements
+validation:
+  required_tests:
+    - "npm test"
+    - "scripts/validate-agents.sh"
+  
+  required_checks:
+    - "paired-doctor"
+    - "installation-test"

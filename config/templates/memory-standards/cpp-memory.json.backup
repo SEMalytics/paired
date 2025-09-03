@@ -1,0 +1,65 @@
+{
+  "stack_preferences": {
+    "stack": "cpp",
+    "cpp_version": ["17", "20"],
+    "preferred_libraries": {
+      "testing": "catch2",
+      "build": "cmake",
+      "package": "conan"
+    },
+    "avoid_patterns": ["raw pointers", "gets", "strcpy"],
+    "architecture_style": "raii_principles",
+    "sync_to_global": false,
+    "source": "curated_template"
+  },
+  "architecture_patterns": {
+    "patterns": [
+      "RAII (Resource Acquisition Is Initialization)",
+      "Smart pointer usage",
+      "Const correctness",
+      "Modern C++ features (C++17, C++20)"
+    ],
+    "anti_patterns": [
+      "Raw pointer management",
+      "Manual memory management",
+      "Unsafe C functions (gets, strcpy)",
+      "Non-const correctness"
+    ],
+    "sync_to_global": false
+  },
+  "dependency_choices": {
+    "preferred_libraries": {
+      "testing": "catch2",
+      "build": "cmake",
+      "package": "conan"
+    },
+    "version_preferences": {
+      "cpp": {
+        "rule": "cpp-modern",
+        "preferred": ["17", "20"]
+      }
+    },
+    "avoid_libraries": ["gets", "strcpy"],
+    "sync_to_global": false
+  },
+  "coding_standards": {
+    "style_conventions": [
+      "Use clang-format for consistent formatting",
+      "Follow RAII principles",
+      "Use smart pointers instead of raw pointers",
+      "Enable const correctness"
+    ],
+    "quality_rules": [
+      "Use modern C++ features",
+      "Avoid unsafe C functions",
+      "Use clang-tidy for static analysis",
+      "Follow memory safety practices"
+    ],
+    "testing_strategies": [
+      "Use Catch2 for unit testing",
+      "Write comprehensive test coverage",
+      "Use RAII for test fixtures"
+    ],
+    "sync_to_global": false
+  }
+}

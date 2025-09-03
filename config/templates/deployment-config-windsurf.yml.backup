@@ -1,0 +1,67 @@
+# PAIRED Windsurf-Only Deployment Configuration
+# WINDSURF DEPLOYMENTS ONLY - NO CLAUDE COMPONENTS
+
+deployment_environments:
+  windsurf-development:
+    name: "Windsurf Development"
+    repository: "https://github.com/SEMalytics/paired-dev.git"
+    branch: "main"
+    description: "Windsurf development with AI access"
+    auto_deploy: true
+    include_dev_docs: true
+    include_test_files: true
+    
+  windsurf-pre-production:
+    name: "Windsurf Pre-Production"
+    repository: "git@github.com:internexio/paired-pre-prod.git"
+    branch: "main"
+    description: "Windsurf pre-production testing"
+    auto_deploy: false
+    include_dev_docs: false
+    include_test_files: true
+    
+  windsurf-production:
+    name: "Windsurf Production"
+    repository: "git@github.com:internexio/paired.git"
+    branch: "main"
+    description: "Windsurf production deployment"
+    auto_deploy: false
+    include_dev_docs: false
+    include_test_files: false
+
+# Windsurf-specific files ONLY
+file_rules:
+  windsurf_core:
+    - "README.md"
+    - "LICENSE"
+    - "install.sh"
+    - "bin/paired"
+    - "core/agents/**/*"
+    - "scripts/start-agents.sh"
+    - "scripts/cascade_bridge_unified_takeover.js"
+    - "src/cascade_bridge_api.js"
+    - "src/agent_launcher.js"
+    - "templates/agent_definitions.md"
+    
+  windsurf_specific:
+    - "scripts/windsurf-*.sh"
+    - "scripts/windsurf_*.js"
+    - "scripts/windsurf_*.sh"
+    - "modules/windsurf-1.0/**/*"
+    - "windsurf-plugin/**/*"
+    - "templates/windsurf*.md"
+    - "templates/windsurfrules"
+    - "templates/global-windsurfrules.md"
+    - "shared/utilities/agent_personality_manager.js"
+    - "src/config/windsurf_agent_types.yml"
+    - "src/config/agent_collaboration_protocol.yml"
+    - "src/config/agent_response_templates.yml"
+
+# EXCLUDE ALL CLAUDE COMPONENTS
+exclusions:
+  - "modules/claudecode-1.0/**/*"
+  - "templates/CLAUDE.md"
+  - "scripts/claude_*"
+  - "shared/utilities/agent_response_relay.js"
+  - "**/claude**"
+  - "**/CLAUDE**"

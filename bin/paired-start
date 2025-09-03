@@ -1,0 +1,32 @@
+#!/bin/bash
+# PAIRED Start - Simple Unified Bridge Startup
+# Uses the working unified bridge architecture
+
+set -euo pipefail
+
+# Colors
+GREEN='\033[0;32m'
+BLUE='\033[0;34m'
+YELLOW='\033[1;33m'
+RED='\033[0;31m'
+NC='\033[0m'
+
+echo -e "${BLUE}🌊 PAIRED Simple Startup${NC}"
+echo "========================="
+echo -e "${BLUE}🚀 Starting PAIRED Services${NC}"
+echo "----------------------------"
+
+# Use global PAIRED installation for unified bridge
+echo -e "${BLUE}🌉 Starting unified bridge...${NC}"
+if ~/.paired/scripts/start-agents.sh --auto; then
+    echo -e "${GREEN}✅ Bridge started successfully${NC}"
+    echo -e "${GREEN}✅ Agents started${NC}"
+    echo ""
+    echo -e "${GREEN}🎉 PAIRED is ready!${NC}"
+    echo -e "${BLUE}Bridge: ws://localhost:7890 (WebSocket)${NC}"
+    echo -e "${YELLOW}Alex and team agents are active and ready to help.${NC}"
+else
+    echo -e "${RED}❌ Failed to start PAIRED services${NC}"
+    echo -e "${YELLOW}💡 Try: ~/.paired/scripts/start-agents.sh for detailed output${NC}"
+    exit 1
+fi

@@ -1,0 +1,187 @@
+#!/bin/bash
+# PAIRED System Validation
+# Validates system integrity and readiness for deployment
+
+set -e
+
+# Colors for output
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+CYAN='\033[0;36m'
+NC='\033[0m'
+
+echo -e "${BLUE}✅ PAIRED System Validation${NC}"
+echo "=========================="
+echo ""
+
+validation_errors=0
+
+# Validate core files
+validate_core_files() {
+    echo -e "${BLUE}📁 Validating Core Files...${NC}"
+    
+    local required_files=(
+        "install.sh"
+        "package.json"
+        "README.md"
+        "LICENSE"
+    )
+    
+    for file in "${required_files[@]}"; do
+        if [ -f "$file" ]; then
+            echo -e "  ${GREEN}✅ $file${NC}"
+        else
+            echo -e "  ${RED}❌ $file - Missing${NC}"
+            validation_errors=$((validation_errors + 1))
+        fi
+    done
+    echo ""
+}
+
+# Validate agent system
+validate_agents() {
+    echo -e "${BLUE}🤖 Validating Agent System...${NC}"
+    
+    # Check agent configs
+    if [ -d "config/agents" ]; then
+        local config_count=$(ls config/agents/*.yml 2>/dev/null | wc -l)
+        if [ "$config_count" -eq 7 ]; then
+            echo -e "  ${GREEN}✅ Agent configurations (7/7)${NC}"
+        else
+            echo -e "  ${RED}❌ Agent configurations ($config_count/7)${NC}"
+            validation_errors=$((validation_errors + 1))
+        fi
+    else
+        echo -e "  ${RED}❌ config/agents directory missing${NC}"
+        validation_errors=$((validation_errors + 1))
+    fi
+    
+    # Check agent factory
+    if [ -f "lib/agents/agent_factory.js" ]; then
+        echo -e "  ${GREEN}✅ Agent factory present${NC}"
+    else
+        echo -e "  ${RED}❌ Agent factory missing${NC}"
+        validation_errors=$((validation_errors + 1))
+    fi
+    
+    # Check base agent
+    if [ -f "lib/agents/base_agent.js" ]; then
+        echo -e "  ${GREEN}✅ Base agent present${NC}"
+    else
+        echo -e "  ${RED}❌ Base agent missing${NC}"
+        validation_errors=$((validation_errors + 1))
+    fi
+    echo ""
+}
+
+# Validate bridge system
+validate_bridge() {
+    echo -e "${BLUE}🌉 Validating Bridge System...${NC}"
+    
+    if [ -f "lib/bridge/cascade-bridge.js" ]; then
+        echo -e "  ${GREEN}✅ Bridge service present${NC}"
+    else
+        echo -e "  ${RED}❌ Bridge service missing${NC}"
+        validation_errors=$((validation_errors + 1))
+    fi
+    
+    if [ -f "lib/bridge/communication.js" ]; then
+        echo -e "  ${GREEN}✅ Communication layer present${NC}"
+    else
+        echo -e "  ${RED}❌ Communication layer missing${NC}"
+        validation_errors=$((validation_errors + 1))
+    fi
+    echo ""
+}
+
+# Validate CLI tools
+validate_cli() {
+    echo -e "${BLUE}⚙️ Validating CLI Tools...${NC}"
+    
+    local cli_tools=(
+        "bin/paired"
+        "bin/paired-help"
+        "bin/paired-monitor"
+        "bin/paired-agent"
+        "bin/paired-test"
+    )
+    
+    for tool in "${cli_tools[@]}"; do
+        if [ -f "$tool" ]; then
+            echo -e "  ${GREEN}✅ $(basename "$tool")${NC}"
+        else
+            echo -e "  ${RED}❌ $(basename "$tool") - Missing${NC}"
+            validation_errors=$((validation_errors + 1))
+        fi
+    done
+    echo ""
+}
+
+# Validate scripts
+validate_scripts() {
+    echo -e "${BLUE}📜 Validating Scripts...${NC}"
+    
+    local scripts=(
+        "scripts/init-project.sh"
+        "scripts/deploy-paired.sh"
+        "scripts/status.sh"
+        "scripts/paired-doctor.sh"
+    )
+    
+    for script in "${scripts[@]}"; do
+        if [ -f "$script" ]; then
+            echo -e "  ${GREEN}✅ $(basename "$script")${NC}"
+        else
+            echo -e "  ${RED}❌ $(basename "$script") - Missing${NC}"
+            validation_errors=$((validation_errors + 1))
+        fi
+    done
+    echo ""
+}
+
+# Validate memory system
+validate_memory() {
+    echo -e "${BLUE}🧠 Validating Memory System...${NC}"
+    
+    if [ -f "lib/agents/base_agent_memory.js" ]; then
+        echo -e "  ${GREEN}✅ Base agent memory${NC}"
+    else
+        echo -e "  ${RED}❌ Base agent memory missing${NC}"
+        validation_errors=$((validation_errors + 1))
+    fi
+    
+    if [ -f "core/infrastructure/shared_memory.js" ]; then
+        echo -e "  ${GREEN}✅ Shared memory system${NC}"
+    else
+        echo -e "  ${RED}❌ Shared memory system missing${NC}"
+        validation_errors=$((validation_errors + 1))
+    fi
+    echo ""
+}
+
+# Run validation
+echo -e "${CYAN}Running system validation...${NC}"
+echo ""
+
+validate_core_files
+validate_agents
+validate_bridge
+validate_cli
+validate_scripts
+validate_memory
+
+# Summary
+echo -e "${BLUE}📊 Validation Summary${NC}"
+echo "==================="
+
+if [ "$validation_errors" -eq 0 ]; then
+    echo -e "${GREEN}✅ System validation passed${NC}"
+    echo -e "${GREEN}🎉 PAIRED is ready for deployment!${NC}"
+    exit 0
+else
+    echo -e "${RED}❌ $validation_errors validation errors found${NC}"
+    echo -e "${YELLOW}💡 Fix errors before deployment${NC}"
+    exit 1
+fi

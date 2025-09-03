@@ -1,0 +1,67 @@
+{
+  "stack_preferences": {
+    "stack": "csharp",
+    "dotnet_version": ["6.0", "8.0"],
+    "preferred_libraries": {
+      "testing": "xUnit",
+      "logging": "Microsoft.Extensions.Logging",
+      "http": "HttpClient",
+      "json": "System.Text.Json"
+    },
+    "avoid_patterns": ["Newtonsoft.Json", "blocking async calls"],
+    "architecture_style": "dependency_injection",
+    "sync_to_global": false,
+    "source": "curated_template"
+  },
+  "architecture_patterns": {
+    "patterns": [
+      "Async/await for I/O operations",
+      "Dependency injection with built-in container",
+      "Nullable reference types",
+      "XML documentation for public APIs"
+    ],
+    "anti_patterns": [
+      "Blocking async operations",
+      "Using deprecated Newtonsoft.Json",
+      "Missing nullable reference types",
+      "Undocumented public APIs"
+    ],
+    "sync_to_global": false
+  },
+  "dependency_choices": {
+    "preferred_libraries": {
+      "testing": "xUnit",
+      "logging": "Microsoft.Extensions.Logging",
+      "http": "HttpClient",
+      "json": "System.Text.Json"
+    },
+    "version_preferences": {
+      "dotnet": {
+        "rule": "dotnet-lts",
+        "preferred": ["6.0", "8.0"]
+      }
+    },
+    "avoid_libraries": ["Newtonsoft.Json"],
+    "sync_to_global": false
+  },
+  "coding_standards": {
+    "style_conventions": [
+      "Use EditorConfig for consistent formatting",
+      "Follow C# naming conventions",
+      "Enable nullable reference types",
+      "Use XML documentation for public APIs"
+    ],
+    "quality_rules": [
+      "Use async/await for I/O operations",
+      "Use built-in dependency injection",
+      "Use System.Text.Json over Newtonsoft",
+      "Enable nullable reference types"
+    ],
+    "testing_strategies": [
+      "Use xUnit for unit testing",
+      "Write comprehensive test coverage",
+      "Use dependency injection in tests"
+    ],
+    "sync_to_global": false
+  }
+}

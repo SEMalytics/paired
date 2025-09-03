@@ -1,0 +1,65 @@
+{
+  "stack_preferences": {
+    "stack": "ruby",
+    "ruby_version": ["3.0", "3.1", "3.2"],
+    "preferred_libraries": {
+      "testing": "rspec",
+      "framework": "rails",
+      "package": "bundler"
+    },
+    "avoid_patterns": ["global variables", "monkey patching"],
+    "architecture_style": "rails_conventions",
+    "sync_to_global": false,
+    "source": "curated_template"
+  },
+  "architecture_patterns": {
+    "patterns": [
+      "Rails conventions and patterns",
+      "RuboCop style enforcement",
+      "RSpec for testing",
+      "Bundler for dependency management"
+    ],
+    "anti_patterns": [
+      "Excessive monkey patching",
+      "Global variable abuse",
+      "Missing test coverage",
+      "Inconsistent code style"
+    ],
+    "sync_to_global": false
+  },
+  "dependency_choices": {
+    "preferred_libraries": {
+      "testing": "rspec",
+      "framework": "rails",
+      "package": "bundler"
+    },
+    "version_preferences": {
+      "ruby": {
+        "rule": "ruby-stable",
+        "preferred": ["3.0", "3.1", "3.2"]
+      }
+    },
+    "avoid_libraries": [],
+    "sync_to_global": false
+  },
+  "coding_standards": {
+    "style_conventions": [
+      "Use RuboCop for style enforcement",
+      "Follow Ruby community conventions",
+      "Use StandardRB for consistent style",
+      "Write readable, expressive code"
+    ],
+    "quality_rules": [
+      "Use RSpec for testing",
+      "Follow Rails conventions",
+      "Use Bundler for dependencies",
+      "Avoid excessive monkey patching"
+    ],
+    "testing_strategies": [
+      "Use RSpec for unit testing",
+      "Write comprehensive test coverage",
+      "Use Rails testing conventions"
+    ],
+    "sync_to_global": false
+  }
+}

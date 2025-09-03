@@ -1,0 +1,67 @@
+{
+  "stack_preferences": {
+    "stack": "java",
+    "java_version": ["11", "17", "21"],
+    "preferred_libraries": {
+      "testing": "junit5",
+      "logging": "slf4j",
+      "build": "maven",
+      "http": "okhttp"
+    },
+    "avoid_patterns": ["junit4", "log4j1", "== null", "!= null"],
+    "architecture_style": "solid_principles",
+    "sync_to_global": false,
+    "source": "curated_template"
+  },
+  "architecture_patterns": {
+    "patterns": [
+      "SOLID design principles",
+      "Package naming with reverse domain convention",
+      "Optional for null safety",
+      "Javadoc for public APIs"
+    ],
+    "anti_patterns": [
+      "Direct null comparisons (== null, != null)",
+      "Using deprecated JUnit4",
+      "Missing Javadoc on public APIs",
+      "Violating SOLID principles"
+    ],
+    "sync_to_global": false
+  },
+  "dependency_choices": {
+    "preferred_libraries": {
+      "testing": "junit5",
+      "logging": "slf4j",
+      "build": "maven",
+      "http": "okhttp"
+    },
+    "version_preferences": {
+      "java": {
+        "rule": "java-lts",
+        "preferred": ["11", "17", "21"]
+      }
+    },
+    "avoid_libraries": ["junit4", "log4j1"],
+    "sync_to_global": false
+  },
+  "coding_standards": {
+    "style_conventions": [
+      "Use Google Java Style formatting",
+      "Follow reverse domain naming convention",
+      "Use Optional instead of null checks",
+      "Include Javadoc for public APIs"
+    ],
+    "quality_rules": [
+      "Use JUnit5 for testing",
+      "Use SLF4J for logging",
+      "Follow SOLID design principles",
+      "Use safe null handling with Optional"
+    ],
+    "testing_strategies": [
+      "Use JUnit5 for unit testing",
+      "Write comprehensive test coverage",
+      "Use modern testing patterns"
+    ],
+    "sync_to_global": false
+  }
+}

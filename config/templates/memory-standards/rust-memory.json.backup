@@ -1,0 +1,69 @@
+{
+  "stack_preferences": {
+    "stack": "rust",
+    "rust_version": ["stable", "1.70+"],
+    "preferred_libraries": {
+      "testing": "built-in",
+      "serialization": "serde",
+      "async": "tokio",
+      "http": "reqwest",
+      "cli": "clap"
+    },
+    "avoid_patterns": ["unsafe blocks", "std::mem::uninitialized"],
+    "architecture_style": "zero_cost_abstractions",
+    "sync_to_global": false,
+    "source": "curated_template"
+  },
+  "architecture_patterns": {
+    "patterns": [
+      "Cargo workspace for multi-crate projects",
+      "Result<T, E> for error handling",
+      "Zero-cost abstractions",
+      "Memory safety without garbage collection"
+    ],
+    "anti_patterns": [
+      "Excessive unsafe blocks",
+      "Using deprecated std::mem::uninitialized",
+      "Ignoring Result types",
+      "Blocking operations in async code"
+    ],
+    "sync_to_global": false
+  },
+  "dependency_choices": {
+    "preferred_libraries": {
+      "testing": "built-in",
+      "serialization": "serde",
+      "async": "tokio",
+      "http": "reqwest",
+      "cli": "clap"
+    },
+    "version_preferences": {
+      "rust": {
+        "rule": "rust-stable",
+        "preferred": ["stable", "1.70+"]
+      }
+    },
+    "avoid_libraries": ["std::mem::uninitialized"],
+    "sync_to_global": false
+  },
+  "coding_standards": {
+    "style_conventions": [
+      "Use rustfmt for consistent formatting",
+      "Use clippy for linting",
+      "Document public APIs",
+      "Minimize unsafe blocks"
+    ],
+    "quality_rules": [
+      "Use Result<T, E> for error handling",
+      "Prefer zero-cost abstractions",
+      "Use safe alternatives to unsafe code",
+      "Follow Rust naming conventions"
+    ],
+    "testing_strategies": [
+      "Use built-in testing framework",
+      "Write comprehensive test coverage",
+      "Use cargo test for testing"
+    ],
+    "sync_to_global": false
+  }
+}

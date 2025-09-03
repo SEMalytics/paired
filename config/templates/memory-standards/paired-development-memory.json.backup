@@ -1,0 +1,79 @@
+{
+  "stack_preferences": {
+    "stack": "paired-development",
+    "nodejs_version": ["18.x", "20.x"],
+    "preferred_libraries": {
+      "websocket": "ws",
+      "testing": "jest", 
+      "linting": "eslint",
+      "formatting": "prettier",
+      "process_management": "pm2",
+      "cli": "commander",
+      "file_system": "fs-extra"
+    },
+    "avoid_patterns": ["var declarations", "callback hell", "hardcoded paths"],
+    "architecture_style": "modular_agent_system",
+    "sync_to_global": false,
+    "source": "curated_template"
+  },
+  "architecture_patterns": {
+    "patterns": [
+      "agent-based modular architecture",
+      "WebSocket bridge communication",
+      "memory-based configuration storage",
+      "CLI tool integration",
+      "cross-platform compatibility"
+    ],
+    "anti_patterns": [
+      "hardcoded file paths",
+      "global state dependencies",
+      "blocking operations in agent communication",
+      "mixed configuration approaches"
+    ],
+    "sync_to_global": false
+  },
+  "dependency_choices": {
+    "preferred_libraries": {
+      "websocket": "ws",
+      "testing": "jest",
+      "linting": "eslint",
+      "formatting": "prettier",
+      "process_management": "pm2",
+      "cli": "commander",
+      "file_system": "fs-extra",
+      "yaml": "js-yaml",
+      "markdown": "marked"
+    },
+    "version_preferences": {
+      "nodejs": {
+        "rule": "nodejs-lts",
+        "preferred": ["18.x", "20.x"]
+      }
+    },
+    "avoid_libraries": ["request", "lodash"],
+    "sync_to_global": false
+  },
+  "coding_standards": {
+    "style_conventions": [
+      "Use const/let instead of var",
+      "Prefer async/await over callbacks",
+      "Use ES6 modules consistently",
+      "Use path.join() for cross-platform paths",
+      "Use descriptive agent function names"
+    ],
+    "quality_rules": [
+      "All agent modules must be self-contained",
+      "WebSocket communication must be non-blocking",
+      "Memory storage must be project-specific",
+      "CLI tools must handle errors gracefully",
+      "Agent responses must maintain personality"
+    ],
+    "testing_strategies": [
+      "Unit tests for agent modules",
+      "Integration tests for bridge communication",
+      "CLI command testing",
+      "Cross-platform path testing"
+    ],
+    "sync_to_global": false
+  }
+}

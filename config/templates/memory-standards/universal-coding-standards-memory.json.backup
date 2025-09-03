@@ -1,0 +1,98 @@
+{
+  "stack_preferences": {
+    "stack": "universal",
+    "language_agnostic": true,
+    "applies_to": ["javascript", "python", "go", "rust", "java", "typescript", "php", "ruby", "cpp", "csharp"],
+    "sync_to_global": true,
+    "source": "universal_principles"
+  },
+  "architecture_patterns": {
+    "patterns": [
+      "Single Responsibility Principle",
+      "Don't Repeat Yourself (DRY)",
+      "Keep It Simple, Stupid (KISS)",
+      "You Aren't Gonna Need It (YAGNI)",
+      "Separation of Concerns",
+      "Dependency Injection",
+      "Interface Segregation",
+      "Composition over Inheritance",
+      "Fail Fast principle",
+      "Defensive Programming"
+    ],
+    "anti_patterns": [
+      "God objects/functions",
+      "Copy-paste programming",
+      "Magic numbers/strings",
+      "Deep nesting (>3 levels)",
+      "Tight coupling",
+      "Global state abuse",
+      "Silent failures",
+      "Premature optimization"
+    ],
+    "sync_to_global": true
+  },
+  "dependency_choices": {
+    "preferred_approaches": {
+      "version_management": "Use stable, well-documented versions",
+      "dependency_philosophy": "Minimize dependencies, maximize value",
+      "security": "Regular dependency audits and updates",
+      "licensing": "Compatible open-source licenses"
+    },
+    "avoid_approaches": [
+      "Bleeding edge versions in production",
+      "Unmaintained libraries",
+      "Libraries with security vulnerabilities",
+      "Overly complex dependencies for simple tasks"
+    ],
+    "sync_to_global": true
+  },
+  "coding_standards": {
+    "style_conventions": [
+      "Consistent naming conventions (camelCase, snake_case, etc.)",
+      "Meaningful variable and function names",
+      "Clear and concise comments",
+      "Consistent indentation (2 or 4 spaces)",
+      "Maximum line length (80-120 characters)",
+      "Consistent file organization",
+      "Version control best practices"
+    ],
+    "quality_rules": [
+      "Write self-documenting code",
+      "Handle errors explicitly",
+      "Validate inputs at boundaries",
+      "Use appropriate data structures",
+      "Optimize for readability first",
+      "Write tests before fixing bugs",
+      "Refactor regularly to reduce technical debt",
+      "Use meaningful commit messages"
+    ],
+    "testing_strategies": [
+      "Unit tests for individual functions/methods",
+      "Integration tests for component interaction",
+      "End-to-end tests for critical user flows",
+      "Test edge cases and error conditions",
+      "Maintain high test coverage (>80%)",
+      "Use descriptive test names",
+      "Test-driven development when appropriate"
+    ],
+    "security_principles": [
+      "Never trust user input",
+      "Use parameterized queries",
+      "Implement proper authentication/authorization",
+      "Sanitize outputs",
+      "Use HTTPS/TLS for data transmission",
+      "Store secrets securely",
+      "Regular security audits"
+    ],
+    "performance_guidelines": [
+      "Profile before optimizing",
+      "Optimize algorithms before micro-optimizations",
+      "Cache expensive operations appropriately",
+      "Use appropriate data structures for the task",
+      "Minimize I/O operations",
+      "Consider memory usage patterns",
+      "Monitor production performance"
+    ],
+    "sync_to_global": true
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "stack_preferences": {
+    "stack": "typescript",
+    "typescript_version": ["4.9", "5.0", "5.1", "5.2"],
+    "preferred_libraries": {
+      "testing": "jest",
+      "linting": "@typescript-eslint/eslint-plugin",
+      "formatting": "prettier",
+      "bundling": "webpack"
+    },
+    "avoid_patterns": ["any type", "non-strict mode"],
+    "architecture_style": "strict_typing",
+    "sync_to_global": false,
+    "source": "curated_template"
+  },
+  "architecture_patterns": {
+    "patterns": [
+      "Strict TypeScript compiler options",
+      "Interfaces over type aliases for objects",
+      "Explicit return types for functions",
+      "Prettier + ESLint for code quality"
+    ],
+    "anti_patterns": [
+      "Using 'any' type",
+      "Missing strict compiler options",
+      "Implicit return types",
+      "Inconsistent code formatting"
+    ],
+    "sync_to_global": false
+  },
+  "dependency_choices": {
+    "preferred_libraries": {
+      "testing": "jest",
+      "linting": "@typescript-eslint/eslint-plugin",
+      "formatting": "prettier",
+      "bundling": "webpack"
+    },
+    "version_preferences": {
+      "typescript": {
+        "rule": "typescript-stable",
+        "preferred": ["4.9", "5.0", "5.1", "5.2"]
+      }
+    },
+    "avoid_libraries": ["any"],
+    "sync_to_global": false
+  },
+  "coding_standards": {
+    "style_conventions": [
+      "Use Prettier + ESLint for formatting and linting",
+      "Enable strict TypeScript compiler options",
+      "Prefer interfaces over type aliases for objects",
+      "Use explicit return types for functions"
+    ],
+    "quality_rules": [
+      "Enable strict mode with all strict options",
+      "Avoid 'any' type usage",
+      "Use specific types instead of any",
+      "Follow TypeScript best practices"
+    ],
+    "testing_strategies": [
+      "Use Jest for unit testing",
+      "Write comprehensive test coverage",
+      "Use TypeScript in tests"
+    ],
+    "sync_to_global": false
+  }
+}

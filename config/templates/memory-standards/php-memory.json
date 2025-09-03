@@ -1,0 +1,65 @@
+{
+  "stack_preferences": {
+    "stack": "php",
+    "php_version": ["8.1", "8.2", "8.3"],
+    "preferred_libraries": {
+      "testing": "phpunit",
+      "package": "composer",
+      "framework": "symfony"
+    },
+    "avoid_patterns": ["mysql_*", "eval", "sql injection patterns"],
+    "architecture_style": "psr_standards",
+    "sync_to_global": false,
+    "source": "curated_template"
+  },
+  "architecture_patterns": {
+    "patterns": [
+      "PSR-12 coding standard",
+      "Strict types and type declarations",
+      "Prepared statements for database queries",
+      "Modern PHP features (8.0+)"
+    ],
+    "anti_patterns": [
+      "Using deprecated mysql_* functions",
+      "Using eval() function",
+      "Direct SQL query concatenation",
+      "Missing strict type declarations"
+    ],
+    "sync_to_global": false
+  },
+  "dependency_choices": {
+    "preferred_libraries": {
+      "testing": "phpunit",
+      "package": "composer",
+      "framework": "symfony"
+    },
+    "version_preferences": {
+      "php": {
+        "rule": "php-modern",
+        "preferred": ["8.1", "8.2", "8.3"]
+      }
+    },
+    "avoid_libraries": ["mysql_*", "eval"],
+    "sync_to_global": false
+  },
+  "coding_standards": {
+    "style_conventions": [
+      "Follow PSR-12 coding standard",
+      "Use php-cs-fixer for formatting",
+      "Enable strict types",
+      "Use type declarations"
+    ],
+    "quality_rules": [
+      "Use prepared statements for SQL",
+      "Avoid eval() function",
+      "Use PHPStan for static analysis",
+      "Follow security best practices"
+    ],
+    "testing_strategies": [
+      "Use PHPUnit for unit testing",
+      "Write comprehensive test coverage",
+      "Use dependency injection in tests"
+    ],
+    "sync_to_global": false
+  }
+}

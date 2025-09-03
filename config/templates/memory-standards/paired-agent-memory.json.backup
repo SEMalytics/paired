@@ -1,0 +1,65 @@
+{
+  "stack_preferences": {
+    "stack": "paired-agent-system",
+    "nodejs_version": ["16.x", "18.x"],
+    "preferred_libraries": {
+      "websocket": "ws",
+      "testing": "jest",
+      "linting": "eslint"
+    },
+    "avoid_patterns": ["express", "koa", "fastify", "HTTP endpoints"],
+    "architecture_style": "websocket_pure",
+    "sync_to_global": false,
+    "source": "curated_template"
+  },
+  "architecture_patterns": {
+    "patterns": [
+      "Pure WebSocket communication",
+      "WebSocket-based health checks",
+      "Established directory structure",
+      "ES2020 features for better AI training data"
+    ],
+    "anti_patterns": [
+      "HTTP REST endpoints (app.get, app.post)",
+      "Express framework usage",
+      "HTTP-based health checks",
+      "Mixed communication protocols"
+    ],
+    "sync_to_global": false
+  },
+  "dependency_choices": {
+    "preferred_libraries": {
+      "websocket": "ws",
+      "testing": "jest",
+      "linting": "eslint"
+    },
+    "version_preferences": {
+      "nodejs": {
+        "rule": "nodejs-lts",
+        "preferred": ["16.x", "18.x"]
+      }
+    },
+    "avoid_libraries": ["express", "koa", "fastify"],
+    "sync_to_global": false
+  },
+  "coding_standards": {
+    "style_conventions": [
+      "Use pure WebSocket communication only",
+      "Follow established directory structure",
+      "Use ES2020 features",
+      "Use ESLint for code quality"
+    ],
+    "quality_rules": [
+      "Bridge components must use pure WebSocket",
+      "Use WebSocket for health checks instead of HTTP",
+      "Avoid mixing communication protocols",
+      "Follow PAIRED agent system architecture"
+    ],
+    "testing_strategies": [
+      "Use Jest for unit testing",
+      "Test WebSocket communication",
+      "Write comprehensive test coverage"
+    ],
+    "sync_to_global": false
+  }
+}

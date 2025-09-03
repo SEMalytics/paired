@@ -1,0 +1,70 @@
+{
+  "stack_preferences": {
+    "stack": "python",
+    "python_version": ["3.8", "3.9", "3.10", "3.11"],
+    "preferred_libraries": {
+      "testing": "pytest",
+      "linting": "pylint", 
+      "formatting": "black",
+      "http": "requests",
+      "async": "asyncio",
+      "sorting": "isort"
+    },
+    "avoid_patterns": ["python2", "imp", "eval()", "exec()"],
+    "architecture_style": "package_structure_conventions",
+    "sync_to_global": false,
+    "source": "curated_template"
+  },
+  "architecture_patterns": {
+    "patterns": [
+      "Python package structure conventions",
+      "Virtual environments for dependency isolation",
+      "Type hints for better code clarity",
+      "Docstrings for all functions"
+    ],
+    "anti_patterns": [
+      "eval() and exec() usage",
+      "Python 2 patterns",
+      "Functions without type annotations",
+      "Missing docstrings"
+    ],
+    "sync_to_global": false
+  },
+  "dependency_choices": {
+    "preferred_libraries": {
+      "testing": "pytest",
+      "linting": "pylint",
+      "formatting": "black", 
+      "http": "requests",
+      "async": "asyncio"
+    },
+    "version_preferences": {
+      "python": {
+        "rule": "python-version",
+        "preferred": ["3.8", "3.9", "3.10", "3.11"]
+      }
+    },
+    "avoid_libraries": ["python2", "imp"],
+    "sync_to_global": false
+  },
+  "coding_standards": {
+    "style_conventions": [
+      "Use Black for consistent code formatting",
+      "Use isort for import sorting",
+      "Use type hints for better code clarity",
+      "Include docstrings for all functions"
+    ],
+    "quality_rules": [
+      "Use virtual environments for dependency isolation",
+      "Follow Python package structure conventions",
+      "Avoid eval() and exec() for security",
+      "Use Python 3.8+ features"
+    ],
+    "testing_strategies": [
+      "Use pytest for testing framework",
+      "Write comprehensive test coverage",
+      "Use type hints in tests"
+    ],
+    "sync_to_global": false
+  }
+}

@@ -1,0 +1,26 @@
+#!/bin/bash
+# PAIRED Start - Bridge and Agent Activation
+# The command everyone expects to exist
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PAIRED_ROOT="$(dirname "$SCRIPT_DIR")"
+
+# Check if we're in a PAIRED project
+if [[ ! -f ".pairedrules" && ! -f "scripts/paired-start.sh" && ! -f ".paired/scripts/start-agents.sh" ]]; then
+    echo "⚠️  Not in a PAIRED project directory"
+    echo "💡 Run 'paired-init' first, or use from a PAIRED project root"
+    exit 1
+fi
+
+# Use the project's paired-start.sh if it exists, or .paired/scripts/start-agents.sh
+if [[ -f "scripts/paired-start.sh" ]]; then
+    echo "🚀 Starting PAIRED bridge and agents..."
+    ./scripts/paired-start.sh "$@"
+elif [[ -f ".paired/scripts/start-agents.sh" ]]; then
+    echo "🚀 Starting PAIRED bridge and agents..."
+    ./.paired/scripts/start-agents.sh "$@"
+else
+    echo "❌ No paired-start script found in this project"
+    echo "💡 Try running 'paired-init' to set up this project"
+    exit 1
+fi

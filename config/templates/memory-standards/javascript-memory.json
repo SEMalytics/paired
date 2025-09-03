@@ -1,0 +1,64 @@
+{
+  "stack_preferences": {
+    "stack": "javascript",
+    "nodejs_version": ["16.x", "18.x", "20.x"],
+    "preferred_libraries": {
+      "websocket": "ws",
+      "testing": "jest", 
+      "linting": "eslint",
+      "formatting": "prettier",
+      "http_framework": ["express", "fastify", "koa"]
+    },
+    "avoid_patterns": ["var declarations", "callback hell"],
+    "architecture_style": "modern_es6_modules",
+    "sync_to_global": false,
+    "source": "curated_template"
+  },
+  "architecture_patterns": {
+    "patterns": [
+      "established directory structure",
+      "consistent module system (ES6 or CommonJS)",
+      "async/await over callbacks"
+    ],
+    "anti_patterns": [
+      "var declarations",
+      "callback hell",
+      "mixed module systems"
+    ],
+    "sync_to_global": false
+  },
+  "dependency_choices": {
+    "preferred_libraries": {
+      "websocket": "ws",
+      "testing": "jest",
+      "linting": "eslint", 
+      "formatting": "prettier",
+      "http": ["express", "fastify", "koa"]
+    },
+    "version_preferences": {
+      "nodejs": {
+        "rule": "nodejs-lts",
+        "preferred": ["16.x", "18.x", "20.x"]
+      }
+    },
+    "avoid_libraries": [],
+    "sync_to_global": false
+  },
+  "coding_standards": {
+    "style_conventions": [
+      "Use const/let instead of var",
+      "Prefer async/await over callbacks",
+      "Use ES2020 features for better readability"
+    ],
+    "quality_rules": [
+      "Use security middleware (helmet, cors)",
+      "Follow established directory structure",
+      "Maintain consistent module system"
+    ],
+    "testing_strategies": [
+      "Use Jest for testing framework",
+      "Write readable async/await tests"
+    ],
+    "sync_to_global": false
+  }
+}

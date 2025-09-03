@@ -1,0 +1,98 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "PAIRED System Check",
+      "type": "shell",
+      "command": "node",
+      "args": [
+        "${env:HOME}/.paired/bin/startup-controller.js",
+        "ensure",
+        "vscode"
+      ],
+      "group": "build",
+      "presentation": {
+        "echo": false,
+        "reveal": "silent",
+        "focus": false,
+        "panel": "dedicated",
+        "showReuseMessage": false,
+        "clear": true
+      },
+      "runOptions": {
+        "runOn": "folderOpen"
+      },
+      "problemMatcher": [],
+      "detail": "Auto-checks and starts PAIRED system using unified startup controller"
+    },
+    {
+      "label": "PAIRED: Manual Start Bridge",
+      "type": "shell",
+      "command": "${env:HOME}/.paired/scripts/paired-bridge-connect.sh --complete",
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "new"
+      },
+      "isBackground": true,
+      "problemMatcher": [],
+      "detail": "Manually start PAIRED bridge and agents"
+    },
+    {
+      "label": "PAIRED: Stop Bridge & Agents",
+      "type": "shell",
+      "command": "pkill -f 'cascade-bridge.js' && pkill -f 'agent_launcher.js'",
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "new"
+      },
+      "detail": "Stop all PAIRED bridge and agent processes"
+    },
+    {
+      "label": "PAIRED: Check Bridge Status",
+      "type": "shell",
+      "command": "${workspaceFolder}/bin/paired-monitor",
+      "group": "test",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "new"
+      },
+      "detail": "Check status of PAIRED bridge and agents"
+    },
+    {
+      "label": "PAIRED: Restart Bridge & Agents",
+      "type": "shell",
+      "command": "node ${env:HOME}/.paired/bin/startup-controller.js stop && sleep 2 && node ${env:HOME}/.paired/bin/startup-controller.js start manual",
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "new"
+      },
+      "isBackground": true,
+      "problemMatcher": [],
+      "detail": "Restart PAIRED bridge and agents (stop then start)"
+    },
+    {
+      "label": "PAIRED: Validate Setup",
+      "type": "shell",
+      "command": "if [ -f \"${env:HOME}/.paired/scripts/start-agents.sh\" ]; then echo \"✅ PAIRED script found and executable\"; ls -la \"${env:HOME}/.paired/scripts/start-agents.sh\"; else echo \"❌ PAIRED script not found at ${env:HOME}/.paired/scripts/start-agents.sh\"; fi",
+      "group": "test",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "new"
+      },
+      "detail": "Validate PAIRED setup and script permissions"
+    }
+  ]
+}

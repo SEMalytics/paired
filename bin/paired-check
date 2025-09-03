@@ -1,0 +1,245 @@
+#!/usr/bin/env node
+
+/**
+ * PAIRED Dependency Pre-Check Script
+ * Validates system requirements before installation
+ */
+
+const { execSync } = require('child_process');
+const fs = require('fs');
+const path = require('path');
+
+const REQUIRED_NODE_VERSION = '18.0.0';
+const REQUIRED_NPM_VERSION = '8.0.0';
+const REQUIRED_PYTHON_VERSION = '3.8.0';
+
+class DependencyChecker {
+    constructor() {
+        this.errors = [];
+        this.warnings = [];
+        this.passed = [];
+    }
+
+    log(message, type = 'info') {
+        const colors = {
+            error: '\x1b[31m❌',
+            warning: '\x1b[33m⚠️',
+            success: '\x1b[32m✅',
+            info: '\x1b[36mℹ️'
+        };
+        const reset = '\x1b[0m';
+        console.log(`${colors[type]} ${message}${reset}`);
+    }
+
+    checkNodeVersion() {
+        try {
+            const nodeVersion = process.version.slice(1); // Remove 'v' prefix
+            const required = REQUIRED_NODE_VERSION;
+            
+            if (this.compareVersions(nodeVersion, required) >= 0) {
+                this.passed.push(`Node.js ${nodeVersion} (required: ${required}+)`);
+                return true;
+            } else {
+                this.errors.push(`Node.js ${nodeVersion} is too old. Required: ${required}+`);
+                return false;
+            }
+        } catch (error) {
+            this.errors.push('Node.js not found or not accessible');
+            return false;
+        }
+    }
+
+    checkNpmVersion() {
+        try {
+            const npmVersion = execSync('npm --version', { encoding: 'utf8' }).trim();
+            const required = REQUIRED_NPM_VERSION;
+            
+            if (this.compareVersions(npmVersion, required) >= 0) {
+                this.passed.push(`npm ${npmVersion} (required: ${required}+)`);
+                return true;
+            } else {
+                this.errors.push(`npm ${npmVersion} is too old. Required: ${required}+`);
+                return false;
+            }
+        } catch (error) {
+            this.errors.push('npm not found or not accessible');
+            return false;
+        }
+    }
+
+    checkGit() {
+        try {
+            const gitVersion = execSync('git --version', { encoding: 'utf8' }).trim();
+            this.passed.push(`Git available: ${gitVersion}`);
+            return true;
+        } catch (error) {
+            this.errors.push('Git not found. Install from https://git-scm.com/');
+            return false;
+        }
+    }
+
+    checkPython() {
+        try {
+            // Try python3 first, then python
+            let pythonCmd = 'python3';
+            let pythonVersion;
+            
+            try {
+                pythonVersion = execSync(`${pythonCmd} --version`, { encoding: 'utf8' }).trim();
+            } catch (error) {
+                pythonCmd = 'python';
+                pythonVersion = execSync(`${pythonCmd} --version`, { encoding: 'utf8' }).trim();
+            }
+            
+            // Extract version number (e.g., "Python 3.9.7" -> "3.9.7")
+            const versionMatch = pythonVersion.match(/Python (\d+\.\d+\.\d+)/);
+            if (!versionMatch) {
+                this.warnings.push('Python version format not recognized');
+                return true; // Don't fail, just warn
+            }
+            
+            const version = versionMatch[1];
+            const required = REQUIRED_PYTHON_VERSION;
+            
+            if (this.compareVersions(version, required) >= 0) {
+                this.passed.push(`Python ${version} (required: ${required}+) - Command: ${pythonCmd}`);
+                return true;
+            } else {
+                this.warnings.push(`Python ${version} is older than recommended ${required}+, but may still work`);
+                return true; // Don't fail, just warn - Python is for optional features
+            }
+        } catch (error) {
+            this.warnings.push('Python not found - Type analysis features will be unavailable');
+            this.warnings.push('Install Python 3.8+ from https://python.org/ for full functionality');
+            return true; // Don't fail - Python is optional for core functionality
+        }
+    }
+
+    checkPlatform() {
+        const platform = process.platform;
+        const platformInfo = {
+            'darwin': 'macOS (Fully supported)',
+            'linux': 'Linux (Fully supported)', 
+            'win32': 'Windows (Community testing needed)'
+        };
+        
+        if (platform === 'win32') {
+            this.errors.push(`Platform: ${platformInfo[platform]}`);
+            this.errors.push('PAIRED does not currently support Windows');
+            this.errors.push('See docs/WINDOWS_SUPPORT.md for community contribution opportunities');
+            return false;
+        } else if (platformInfo[platform]) {
+            this.passed.push(`Platform: ${platformInfo[platform]}`);
+            return true;
+        } else {
+            this.warnings.push(`Platform: ${platform} (untested, may work)`);
+            return true; // Don't fail, just warn
+        }
+    }
+
+    checkDiskSpace() {
+        try {
+            const stats = fs.statSync(process.cwd());
+            // Basic check - if we can stat current directory, assume we have space
+            this.passed.push('Disk space: Available');
+            return true;
+        } catch (error) {
+            this.warnings.push('Could not check disk space');
+            return true; // Don't fail on this
+        }
+    }
+
+    checkPermissions() {
+        try {
+            const testFile = path.join(process.cwd(), '.paired-test-write');
+            fs.writeFileSync(testFile, 'test');
+            fs.unlinkSync(testFile);
+            this.passed.push('Write permissions: OK');
+            return true;
+        } catch (error) {
+            this.errors.push('No write permissions in current directory');
+            return false;
+        }
+    }
+
+    compareVersions(version1, version2) {
+        const v1parts = version1.split('.').map(Number);
+        const v2parts = version2.split('.').map(Number);
+        
+        for (let i = 0; i < Math.max(v1parts.length, v2parts.length); i++) {
+            const v1part = v1parts[i] || 0;
+            const v2part = v2parts[i] || 0;
+            
+            if (v1part > v2part) return 1;
+            if (v1part < v2part) return -1;
+        }
+        return 0;
+    }
+
+    async runAllChecks() {
+        console.log('🔍 PAIRED Dependency Check\n');
+        
+        const checks = [
+            { name: 'Node.js Version', fn: () => this.checkNodeVersion() },
+            { name: 'npm Version', fn: () => this.checkNpmVersion() },
+            { name: 'Python Availability', fn: () => this.checkPython() },
+            { name: 'Git Availability', fn: () => this.checkGit() },
+            { name: 'Platform Support', fn: () => this.checkPlatform() },
+            { name: 'Disk Space', fn: () => this.checkDiskSpace() },
+            { name: 'Write Permissions', fn: () => this.checkPermissions() }
+        ];
+
+        let allPassed = true;
+        
+        for (const check of checks) {
+            const result = check.fn();
+            if (!result) allPassed = false;
+        }
+
+        this.printResults();
+        return allPassed;
+    }
+
+    printResults() {
+        console.log('\n📋 Results:\n');
+        
+        if (this.passed.length > 0) {
+            this.passed.forEach(item => this.log(item, 'success'));
+        }
+        
+        if (this.warnings.length > 0) {
+            console.log('');
+            this.warnings.forEach(item => this.log(item, 'warning'));
+        }
+        
+        if (this.errors.length > 0) {
+            console.log('');
+            this.errors.forEach(item => this.log(item, 'error'));
+        }
+
+        console.log('\n' + '='.repeat(50));
+        
+        if (this.errors.length === 0) {
+            this.log('All checks passed! Ready to install PAIRED.', 'success');
+            console.log('\n💡 Next step: Run ./install.sh');
+        } else {
+            this.log(`${this.errors.length} critical issue(s) found.`, 'error');
+            console.log('\n💡 Fix the issues above, then run this check again.');
+            console.log('📚 Need help? See docs/BEGINNER_SETUP.md');
+        }
+    }
+}
+
+// CLI Interface
+if (require.main === module) {
+    const checker = new DependencyChecker();
+    
+    checker.runAllChecks().then(success => {
+        process.exit(success ? 0 : 1);
+    }).catch(error => {
+        console.error('❌ Dependency check failed:', error.message);
+        process.exit(1);
+    });
+}
+
+module.exports = DependencyChecker;

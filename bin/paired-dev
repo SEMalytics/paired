@@ -1,0 +1,4 @@
+#!/bin/bash
+# PAIRED Development Workflow - Global Command
+cd "$(dirname "$0")/.."
+exec ./scripts/paired-dev-workflow.sh "$@"

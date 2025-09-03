@@ -1,0 +1,59 @@
+#!/bin/bash
+# PAIRED Version Information
+# Shows version, build info, and system details
+
+set -e
+
+# Colors for output
+BLUE='\033[0;34m'
+GREEN='\033[0;32m'
+CYAN='\033[0;36m'
+NC='\033[0m'
+
+echo -e "${BLUE}📋 PAIRED Version Information${NC}"
+echo "============================"
+echo ""
+
+# Get version from package.json
+if [ -f "package.json" ]; then
+    VERSION=$(node -e "console.log(require('./package.json').version)" 2>/dev/null || echo "unknown")
+    echo -e "${GREEN}Version: $VERSION${NC}"
+else
+    echo -e "${GREEN}Version: 1.0.0${NC}"
+fi
+
+# Get build info if available
+if [ -f "VERSION.json" ]; then
+    BUILD_INFO=$(node -e "
+const version = require('./VERSION.json');
+console.log('Build: ' + (version.tag || version.version || 'unknown'));
+console.log('Timestamp: ' + (version.timestamp || 'unknown'));
+" 2>/dev/null || echo "Build info unavailable")
+    echo -e "${CYAN}$BUILD_INFO${NC}"
+fi
+
+# System info
+echo ""
+echo -e "${BLUE}System Information:${NC}"
+echo -e "${CYAN}Platform: $(uname -s)${NC}"
+echo -e "${CYAN}Architecture: $(uname -m)${NC}"
+echo -e "${CYAN}Node.js: $(node --version 2>/dev/null || echo 'Not available')${NC}"
+
+# Installation info
+echo ""
+echo -e "${BLUE}Installation:${NC}"
+if [ -d "$HOME/.paired" ]; then
+    echo -e "${GREEN}Global: Installed${NC}"
+else
+    echo -e "${CYAN}Global: Not installed${NC}"
+fi
+
+if [ -d ".paired" ]; then
+    echo -e "${GREEN}Project: Configured${NC}"
+else
+    echo -e "${CYAN}Project: Not configured${NC}"
+fi
+
+echo ""
+echo -e "${BLUE}🤝 PAIRED - Platform for AI-Enabled Remote Development${NC}"
+echo -e "${CYAN}Repository: https://github.com/SEMalytics/paired-dev${NC}"
